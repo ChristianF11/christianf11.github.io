@@ -1,0 +1,719 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Elenco e breve descrizione dei programmi</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c5bb97d9-b2fd-427a-b467-4a25fba70944" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">☑️</span></div><h1 class="page-title">Elenco e breve descrizione dei programmi</h1></header><div class="page-body"><p id="530bd1d5-1724-4513-a203-f358569f1adb" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="c6093b98-1d51-48ec-ad19-0f4a11d1c9c9"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><a href="https://dev.to/emurtzle/useful-free-programs-for-planning-and-productivity-for-developers-5fcm">Useful Free Programs for Planning and Productivity for Developers - DEV Community</a></div></figure><p id="3f8240ee-f2f0-449d-8ac7-8fd6227ac475" class="">
+</p><p id="6e3be9cd-bdf1-41e0-aa1b-e1f4426746c5" class="">In questa pagina non vengono elencati tutti (per la lista completa cliccare il link qua sopra)</p><p id="5c0f759f-4c92-4331-81c5-25177a6ce974" class="">
+</p><nav id="75175e5c-5dff-4b7d-8aac-a2e0551bc149" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#efce8e58-5066-4b8b-835b-00eb2d786c60">Pianificazione &amp; produttività</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#be304244-3a30-42b4-aa93-fb5123333415">1. Figma</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0550d737-7d2f-418e-8f21-553b0cda1210">2. Font Flipper</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f3352b95-10ac-4062-a9af-291e1d515707">3. Adobe Color Wheel </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9f4cf0e1-854a-4351-9ab2-5e075f920c33">4. Coolors</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#df3e305a-309e-4728-b133-9eda4f98b1c2">5. Bubbl.us</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#168300ac-0506-4303-a565-418cb1c3d4f7">6. Draw.io</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#006224b8-312c-4c5c-8af2-4c07a613c9f0">7. unDraw</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#b0119858-8729-40d7-aba1-46cd4dc542c1">Creazione di contenuti </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#52a44edf-5b5c-40a5-83fe-d85ac14591c7">1. Vectr </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c29bf47d-b725-4b8b-8604-a21aea056421">2. Canva</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6663b3ab-706a-465d-befd-8e66a710569f">3. Videvo</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f9022684-aebc-4b27-b47f-0d1a04d0edda">Risorse </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9e7bbf18-b062-43ab-8a73-444bb02b8c0b">1. DevDocs.io</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23636926-d926-49fa-b451-81e980a1c9fa">2. WolframAlpha</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ce4bb735-34cb-4b2d-b9de-7b01ae05edce">3. GoogleFonts</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6eb696bc-52b0-4e82-9503-5ccd7b80b77f">4. Up</a></div></nav><hr id="18fbfb4b-a7de-46c1-beb5-e5d8ba36a0f5"/><h2 id="efce8e58-5066-4b8b-835b-00eb2d786c60" class="">Pianificazione &amp; produttività</h2><p id="69d54212-5308-4ec5-be38-9e9e4dfd79f2" class="">
+</p><h3 id="be304244-3a30-42b4-aa93-fb5123333415" class="">1. Figma</h3><p id="f6e6891d-35c9-4e7e-9bb9-a4b119398bf6" class="">
+</p><p id="ccfae27b-706f-4ccd-8d63-ffd293cf50f3" class="">Utile per:</p><p id="a965cb52-c157-43f1-9af6-397a78f8c0a6" class="">
+</p><ul id="8b306ad0-b45c-43c8-b3eb-77cf6b7d80fd" class="bulleted-list"><li style="list-style-type:disc">Design</li></ul><ul id="fd6aef56-150e-47d3-9fe5-1d499cc6a992" class="bulleted-list"><li style="list-style-type:disc">Road map</li></ul><ul id="a886d1a6-e224-43aa-bcb3-b91870b9d940" class="bulleted-list"><li style="list-style-type:disc">Diagrammi UML</li></ul><ul id="edc9704a-c7e6-425a-bbd0-218a3c55cf68" class="bulleted-list"><li style="list-style-type:disc">Modelli concettuali (Database)</li></ul><p id="77cc9daa-23f0-4315-b130-6b705f4434a7" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f75bf8f3-954d-4cf5-a680-d90d17660b36"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><a href="https://www.figma.com/">https://www.figma.com</a></div></figure><p id="747199c9-651e-4ee7-8284-e5f679ba3116" class="">
+</p><hr id="3e4e860e-4c33-4993-a1aa-3e09fd17efe2"/><h3 id="0550d737-7d2f-418e-8f21-553b0cda1210" class="">2. Font Flipper</h3><p id="a679ab9d-3b31-41c3-b4cb-4cac840526b2" class="">
+</p><ul id="4792757f-7c22-40ae-9596-958deb1a036c" class="bulleted-list"><li style="list-style-type:disc">Aiuta a trovare facilmente i font di Google </li></ul><p id="11faa1b3-ffad-46b1-ad3b-f8c0a9a47f45" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="7a082f9d-e322-4a67-b0aa-bce1a658612f"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><a href="https://fontflipper.com/upload/">https://fontflipper.com/upload/</a></div></figure><p id="230bad03-7bfb-47cb-bcb1-6c9aedad2cec" class="">
+</p><hr id="1349c4fc-58dc-49a9-9f19-879e75e8ee3c"/><h3 id="f3352b95-10ac-4062-a9af-291e1d515707" class="">3. Adobe Color Wheel </h3><p id="38e1d2c3-0367-4a6e-994c-72e93ac24a9c" class="">
+</p><ul id="62eca695-703b-4439-b1e9-f73ef5515156" class="bulleted-list"><li style="list-style-type:disc">Aiuta con la scelta dei colori per il progetto</li></ul><p id="66db8811-848a-4ad7-8231-1db56ce07f46" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3bfa7565-d17b-4d57-8a44-3cee28e3c0b3"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><a href="https://color.adobe.com/create/color-wheel/">https://color.adobe.com/create/color-wheel/</a></div></figure><p id="8741a487-df7e-48b6-b25a-eeb3e61b0eab" class="">
+</p><hr id="dfedad6c-466b-4004-be8a-dbd484458c38"/><h3 id="9f4cf0e1-854a-4351-9ab2-5e075f920c33" class="">4. Coolors</h3><p id="f457efb6-7966-42cf-8fe3-e518b11c5bcf" class="">
+</p><ul id="9e618f72-13a9-4717-85ee-42c400215af6" class="bulleted-list"><li style="list-style-type:disc">Permette di consultare diverse palette di colori o di crearne una nuova</li></ul><p id="90b0fb96-b653-4b96-a42e-526a95823e95" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="93474a85-577a-43be-8470-851904b4caf2"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><a href="https://coolors.co/">https://coolors.co/</a></div></figure><p id="1e78433a-ff0c-47ec-ab04-a444a74b38a7" class="">
+</p><hr id="badd258a-9549-46a8-9fbc-3fc19f47310a"/><h3 id="df3e305a-309e-4728-b133-9eda4f98b1c2" class="">5. Bubbl.us</h3><p id="e6bba6a1-34ad-43ab-811c-6143ef9f02a3" class="">
+</p><p id="ad4cd27b-1212-40d3-9a87-f08ff22ed772" class="">Utile per:</p><p id="d0824c9a-d49f-4e40-9674-dd332ce66255" class="">
+</p><ul id="6e772ab1-d5f3-4507-8bb3-379c0b92f7cf" class="bulleted-list"><li style="list-style-type:disc">Il brainstorming utilizzando mappe concettuali</li></ul><p id="c00bf6ce-9f10-4d46-ad13-cc34dc6e95e8" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="cde54cf4-5755-481e-8f2b-c077af41206e"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><a href="https://bubbl.us/">https://bubbl.us/</a></div></figure><p id="63d05b30-3d9d-45c4-9720-9b393e3fa4a8" class="">
+</p><hr id="f7682901-2fb0-4f41-8f4b-e44714b6c3a4"/><h3 id="168300ac-0506-4303-a565-418cb1c3d4f7" class="">6. Draw.io</h3><p id="038c1683-685e-4a5f-b072-296a1485f7e4" class="">
+</p><ul id="8b93597d-6cb8-4f06-bf96-5279d0563e0e" class="bulleted-list"><li style="list-style-type:disc">Permette di creare diagrammi di qualsiasi tipo (UML, concettuali, ecc.)</li></ul><p id="424592ea-ad0a-411c-ab89-2595728aa783" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="02037856-36c0-46a5-b0c6-782e5323a244"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><a href="https://www.draw.io/">https://www.draw.io/</a></div></figure><p id="4217c3f9-e3f4-4fa2-b207-659e7c908d5b" class="">
+</p><hr id="88fe7494-93c1-423b-b5bd-03f00163822d"/><h3 id="006224b8-312c-4c5c-8af2-4c07a613c9f0" class="">7. unDraw</h3><p id="7a235226-c6ad-43db-9127-0a75ff8410c2" class="">
+</p><ul id="f76e9fb0-5516-4ab9-8500-df6c347b101b" class="bulleted-list"><li style="list-style-type:disc">Libreria Open Source di grafiche da inserire all’interno di un progetto</li></ul><p id="32052d0a-115f-416d-a5cd-0136a8ef05c7" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="fc518e15-30bd-44de-8714-d1a621fef093"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><a href="https://undraw.co/">https://undraw.co/</a></div></figure><p id="b7aacb3e-f842-44e0-ab61-2f1f0314627a" class="">
+</p><hr id="7aa2c3c0-6d6a-4120-b733-8c3ac68cdb72"/><h2 id="b0119858-8729-40d7-aba1-46cd4dc542c1" class="">Creazione di contenuti </h2><p id="a8d7404b-60f8-4d04-bf05-46bad57bbb0f" class="">
+</p><h3 id="52a44edf-5b5c-40a5-83fe-d85ac14591c7" class="">1. Vectr </h3><p id="af26d1a7-8d7f-48ee-b1ad-2569aed6bfc6" class="">
+</p><ul id="c50572a0-965b-4d5f-b111-fafc383e5f4f" class="bulleted-list"><li style="list-style-type:disc">Per creare ed editare grafiche</li></ul><p id="582e9ef6-c722-49eb-889c-d465149c4eaa" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="99c7b89d-2a50-4fe4-82df-0063d08a8b13"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><a href="https://vectr.com/">https://vectr.com/</a></div></figure><p id="2028e17d-575d-49ba-a0f2-a7881403a341" class="">
+</p><hr id="dbb6e62e-d707-4929-858b-7af0b03037ba"/><h3 id="c29bf47d-b725-4b8b-8604-a21aea056421" class="">2. Canva</h3><p id="4fea418e-554f-4417-8cf2-2fad34ac5999" class="">
+</p><ul id="1586cf54-e213-49ff-88e7-edacf4cd086f" class="bulleted-list"><li style="list-style-type:disc">Per creare qualsiasi tipo di grafica (a partire da quelle pubblicitarie ai loghi)</li></ul><p id="fe694a3f-2b62-4264-bdbd-1ec5677cdeb2" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="d8bbc052-e246-4557-bcac-42367c4195dc"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><a href="https://www.canva.com/">https://www.canva.com/</a></div></figure><p id="bee14843-ff9d-4c1f-8f07-f8590cf55a82" class="">
+</p><hr id="0850faf7-2801-4d51-94a7-acfd8a9f0379"/><h3 id="6663b3ab-706a-465d-befd-8e66a710569f" class="">3. Videvo</h3><p id="c20c31f4-1b27-4ed0-b8f3-d86adf6083c5" class="">
+</p><ul id="e3cbb35b-add1-4488-80a3-f384fa5ea2c9" class="bulleted-list"><li style="list-style-type:disc">Raccolta di <em>Free Stock Video</em></li></ul><p id="49abea82-516a-42c2-92b3-0d950a339c13" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="71253563-4582-48ff-bd86-7efde82e3048"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><a href="https://www.videvo.net/">https://www.videvo.net/</a></div></figure><p id="376fc0d0-98c7-46bd-aa86-6dc3d387a67c" class="">
+</p><hr id="42c219b1-9da7-41d2-8257-e7d66fe764e5"/><h2 id="f9022684-aebc-4b27-b47f-0d1a04d0edda" class="">Risorse </h2><p id="858c7f94-5562-4a0e-8a0d-b0fbcd6341a7" class="">
+</p><h3 id="9e7bbf18-b062-43ab-8a73-444bb02b8c0b" class="">1. DevDocs.io</h3><p id="ee002f24-71f5-4404-9414-c71f49350f44" class="">
+</p><ul id="a280eabd-7c2d-4d3b-b8ac-2a794c5ba8d6" class="bulleted-list"><li style="list-style-type:disc">Tutte le documentazioni di un progetto in un unico posto</li></ul><p id="2217505d-9522-4e9d-ac25-58f76aa5e862" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f7a8f9dc-fbc0-4db9-832b-d3c310c8781d"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><a href="https://devdocs.io/">https://devdocs.io/</a></div></figure><p id="130679cb-7e1b-4dd6-a389-86e96e1d3d1b" class="">
+</p><hr id="28a2d520-3b89-406a-b7ac-b9b6c8743caa"/><h3 id="23636926-d926-49fa-b451-81e980a1c9fa" class="">2. WolframAlpha</h3><p id="d3a0ff8c-a1dd-4c43-86c4-c654d1aeeb52" class="">
+</p><ul id="1c6d5fae-8524-43fc-94f9-53eb8493dc87" class="bulleted-list"><li style="list-style-type:disc">Esempi di qualunque tipo (fisica, matematica, cultura)</li></ul><ul id="165ae2ab-3989-4e45-8ae3-483a4ffb2edf" class="bulleted-list"><li style="list-style-type:disc">Effettua i calcoli prendendo in input dei dati</li></ul><ul id="cd56ba61-31ef-4541-9fb8-f483f5f02304" class="bulleted-list"><li style="list-style-type:disc">Presenta anche grafici e schemi</li></ul><p id="52858759-f972-4aba-9aed-635b1ae1a2fe" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="a1313a85-93b3-42e6-81dc-5e74b42a0774"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><a href="https://www.wolframalpha.com/">https://www.wolframalpha.com/</a></div></figure><p id="6b25c593-7f90-4d9d-84fd-97e49e13e6b5" class="">
+</p><hr id="d902c6af-94c4-4ce0-b556-2484ce58ddf4"/><h3 id="ce4bb735-34cb-4b2d-b9de-7b01ae05edce" class="">3. GoogleFonts</h3><p id="6182202d-f6e7-439e-adb8-ced77f05b5f3" class="">
+</p><ul id="6a43bbe0-444b-4ca4-9bc7-a2aa3df8f27d" class="bulleted-list"><li style="list-style-type:disc">Una raccolta con tutti i font di Google </li></ul><p id="70f434e4-afaf-4ba8-a5ad-729decea5415" class="">
+</p><div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="90c6d13b-1576-4ea0-b79d-fbac1ec5d909"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><a href="https://fonts.google.com/">https://fonts.google.com/</a></div></figure></div><p id="cf642cbb-9ea3-4500-a971-da01434626a1" class="">
+</p><hr id="a7330d43-8fab-413d-a17e-a1fc5d098f17"/><h3 id="6eb696bc-52b0-4e82-9503-5ccd7b80b77f" class="">4. Up</h3><p id="2d744623-d0c8-4476-b5c7-53dff3eb6145" class="">
+</p><ul id="ac73c8aa-d8e0-4527-a59e-1a12d0be4009" class="bulleted-list"><li style="list-style-type:disc">Raccolta di asset (gratuiti) per applicazioni mobile</li></ul><p id="19b902ac-9374-4287-8f84-6f78b9848b5e" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="2c0340e5-9327-4032-8176-e4b4200d9731"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><a href="https://www.uplabs.com/">https://www.uplabs.com/</a></div></figure><p id="4efbf01d-9a9d-4eea-a8d1-d4c8113db604" class="">
+</p><hr id="66d87747-31c4-48d6-8c56-800bf8df4257"/></div></article></body></html>

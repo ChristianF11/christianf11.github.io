@@ -1,0 +1,730 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Operazioni sui dati</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="bbf58ab7-540d-45d6-891b-1163484b477e" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📝</span></div><h1 class="page-title">Operazioni sui dati</h1></header><div class="page-body"><p id="51431312-2cac-4307-90c2-70bde37c5de4" class="">
+</p><nav id="6a158bf9-ece4-4106-a700-0c283ccd739e" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#de89cd4e-bb04-4076-911a-22847f9ddda4">Operazioni (su valori numerici)</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#79d85975-a136-4f81-8cb8-b4a91899bf2d">Sintassi (Operazioni sui valori numerici)</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#8be2b109-1420-4b8b-89da-9eaf01d155db">Metodi predefiniti (per valori numerici)</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#68ed01e7-8ead-4b34-9651-81e8997dfc45">Sintassi (per metodi predefiniti)</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#30a77be0-8e3d-4f82-918b-2265275fdb9e">Operazioni (su stringhe)</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1f83bef3-c8c3-4166-a598-8a5736dc272d">Metodi predefiniti (per stringhe)</a></div></nav><hr id="465c82b9-81e5-4891-a8ff-616f14d473b6"/><p id="82cc9d52-c400-44db-9e45-54325a4375c0" class="">
+</p><h3 id="de89cd4e-bb04-4076-911a-22847f9ddda4" class="">Operazioni (su valori numerici)</h3><ul id="8d2721f3-223a-4589-8ca2-71ce88e57faa" class="bulleted-list"><li style="list-style-type:disc">La libreria di dart permette di effettuare numerose operazioni sui valori numerici</li></ul><p id="d4e7970e-0f6f-44c0-a249-0e321ab517e5" class="">
+</p><p id="3e950c9b-b0d2-4b24-83d5-18892d7391d0" class="">Eccone alcune:</p><p id="09a28083-d331-4201-b468-e0b906abcf10" class="">
+</p><ol type="1" id="390171f7-2952-4256-b594-d47956278e14" class="numbered-list" start="1"><li><span style="border-bottom:0.05em solid"><strong>hashcode</strong></span> ⇒ Ritorna un “codice hash” (una sequenza di bit correlata al dato di input) per un valore numerico </li></ol><ol type="1" id="f838544c-f0a7-4249-bc2e-29fc20cad660" class="numbered-list" start="2"><li><span style="border-bottom:0.05em solid"><strong>isFinite</strong></span> ⇒ ‘True’ se il numero è finito (altrimenti ‘False’)</li></ol><ol type="1" id="d2785668-6da0-46d3-8495-52334b3ce5d8" class="numbered-list" start="3"><li><span style="border-bottom:0.05em solid"><strong>isNegative </strong></span>⇒ ‘True’ se il numero è negativo (altrimenti ‘False’)</li></ol><ol type="1" id="2da0d50d-eb5d-4eea-a4b8-d94982a7da76" class="numbered-list" start="4"><li><span style="border-bottom:0.05em solid"><strong>isEven </strong></span>⇒ Ritorna ‘True’ se il numero è pari</li></ol><ol type="1" id="a35dd56b-b544-453d-b112-831976a68b9b" class="numbered-list" start="5"><li><span style="border-bottom:0.05em solid"><strong>isOdd </strong></span>⇒ Ritorna ‘True’ se il numero è dispari</li></ol><p id="2b750673-8a13-4bf6-9c3e-2e0455c8b7cf" class="">
+</p><hr id="361e47d9-01f7-4f2d-a4f5-88069a51e79a"/><h3 id="79d85975-a136-4f81-8cb8-b4a91899bf2d" class="">Sintassi (Operazioni sui valori numerici)</h3><p id="b589ff76-a2e5-45b0-bf35-695777931983" class="">
+</p><pre id="731c6651-027c-4f81-987b-93ff34a01791" class="code"><code>variable_name.propertyname</code></pre><p id="88ec08fc-6909-44bc-8e0e-189b89215633" class="">
+</p><p id="2ef90d0d-dcfc-45ec-83ab-474ee4250eb1" class="">Esempio</p><pre id="b837cac0-3d20-41ec-9108-708cfcab7a47" class="code"><code>void main() {
+
+	int posNum = 10;
+	print(posNum.isEven); //Utilizzo &#x27;isEven&#x27;
+
+}</code></pre><hr id="8053b931-153a-4e98-b72b-90c31b55803d"/><h3 id="8be2b109-1420-4b8b-89da-9eaf01d155db" class="">Metodi predefiniti (per valori numerici)</h3><p id="c220f4f4-9b33-497e-85e2-37dd07bfa589" class="">
+</p><ul id="72393dde-32df-4992-9b89-55dad72080eb" class="bulleted-list"><li style="list-style-type:disc">Esistono alcuni metodi (che operano sui numeri) predefiniti, cioè già presenti nel linguaggio. </li></ul><p id="dbea1f8b-5a72-4be1-bd67-d17200fda11d" class="">
+</p><p id="70c7085a-c434-47d9-88fd-e72778a9d65d" class="">Eccone alcuni:</p><p id="24cd716f-30f5-4935-8be5-b0b0bf66ec93" class="">
+</p><ol type="1" id="63042006-10a6-4bc4-be30-3d646cde8d22" class="numbered-list" start="1"><li><span style="border-bottom:0.05em solid"><strong>abs()</strong></span> ⇒ Ritorna il valore assoluto di un numero</li></ol><ol type="1" id="9b4ddc89-0ae2-45c7-9443-c980513c2989" class="numbered-list" start="2"><li><span style="border-bottom:0.05em solid"><strong>ceil()</strong></span> ⇒ Ritorna il più piccolo <em>Integer</em> non più piccolo del numero</li></ol><ol type="1" id="1e0349ec-93d9-4c0e-ae19-86532cac59e7" class="numbered-list" start="3"><li><span style="border-bottom:0.05em solid"><strong>floor()</strong></span> ⇒ Ritorna il più grande <em>Integer</em> non più piccolo del numero</li></ol><ol type="1" id="813557f7-e19b-4939-8be4-4e1a8b8fde9e" class="numbered-list" start="4"><li><span style="border-bottom:0.05em solid"><strong>remainder()</strong></span> ⇒ Ritorna il resto troncato dopo aver diviso due numeri</li></ol><ol type="1" id="e9b82f93-3a22-4da4-bb48-86307748155c" class="numbered-list" start="5"><li><span style="border-bottom:0.05em solid"><strong>round()</strong></span> ⇒ Ritorna l’<em>Integer</em> più vicino a quel valore</li></ol><ol type="1" id="ca503b46-995e-403c-8d79-bf55307be612" class="numbered-list" start="6"><li><strong><span style="border-bottom:0.05em solid">toDouble()</span></strong> ⇒ Ritorna il <em>Double</em> equivalente a quel numero</li></ol><ol type="1" id="16a3fc1f-663a-47a4-abc9-b47886f17892" class="numbered-list" start="7"><li><span style="border-bottom:0.05em solid"><strong>toInt()</strong></span> ⇒ Ritorna l’<em>Integer</em> equivalente a quel numero</li></ol><ol type="1" id="208d6f76-cac6-41f9-b8bb-7d6fac03bb0d" class="numbered-list" start="8"><li><span style="border-bottom:0.05em solid"><strong>truncate()</strong></span> ⇒ Ritorna un <em>Integer</em> dopo aver rimosso le cifre decimali</li></ol><p id="27f9906f-0f38-45e3-9b38-204265bb1b24" class="">
+</p><hr id="9b834c91-e3a0-4606-a333-41fddf64351f"/><h3 id="68ed01e7-8ead-4b34-9651-81e8997dfc45" class="">Sintassi (per metodi predefiniti)</h3><p id="e1ffb34c-2624-4750-a4ce-11cdeebedd4f" class="">
+</p><pre id="0d4c51fe-9e1c-4ae7-8b7a-f964fe1114c3" class="code"><code>variable_name.method();</code></pre><p id="8e520855-be99-45fd-a0f9-5f5e90d6b83b" class="">
+</p><p id="129f3397-6a90-4b49-a448-f21cba8f5043" class="">Esempio </p><pre id="f601e288-9d92-4c47-ae06-d43b3ce773ac" class="code"><code>void main() {
+
+	var a = -2;
+	print(a.abs());
+
+}</code></pre><hr id="9bf90025-8621-4289-bc21-5ca1acc13c3d"/><h3 id="30a77be0-8e3d-4f82-918b-2265275fdb9e" class="">Operazioni (su stringhe)</h3><p id="f3672c57-eef0-47f2-9ed1-845e41126936" class="">
+</p><p id="8bac64b9-b5f5-4661-ae1f-a998fa847269" class=""> </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="27d8e610-2532-48b8-8a02-343c98e739ff"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><span style="border-bottom:0.05em solid"><strong>INTERPOLAZIONE DELLE STRINGHE
+
+</strong></span>Processo di creazione di una nuova stringa, aggiungendo un valore a una stringa statica (questo processo è noto come “Concatenazione” o “Interpolazione”). In poche parole viene aggiunta una stringa ad un’altra stringa </div></figure><p id="8dde5033-f892-425d-8809-ee07b9731755" class="">
+</p><ul id="23471a6a-8516-4158-8d93-d899b6ef01d9" class="bulleted-list"><li style="list-style-type:disc">Per concatenare le stringe viene usato l’operatore ‘ <span style="border-bottom:0.05em solid">+</span> ‘</li></ul><p id="adae5818-805f-45c9-a81f-d2c39b569ba3" class="">
+</p><p id="76407726-4170-4b5a-9aff-ba89bc18d35f" class="">Esempio</p><pre id="6f634ae5-edaa-43e0-80b9-6fcc4ed64005" class="code"><code>void main() {
+
+	String s1 = &quot;Hello&quot;;
+	String s1 = &quot;world&quot;;
+	res = s1 + s2; //Concatenazione
+
+	print(&quot;La concatenazione delle due stringhe: ${res});
+
+}</code></pre><p id="30aed63a-a1ed-4172-afa5-ebea3621c5fe" class="">
+</p><ul id="1467f6e5-2163-4c28-870b-dacc2a7363a7" class="bulleted-list"><li style="list-style-type:disc">Un altro metodo è quello di utilizzare ‘ <span style="border-bottom:0.05em solid">${}</span> ‘</li></ul><p id="01fae1d1-aadf-4f92-95fe-b629f301eeb9" class="">
+</p><p id="c5a1c6d6-0cdb-4dae-80fe-405b54bae544" class="">Esempio</p><pre id="293fd7c6-942c-416e-b75f-94fa4b40d5b8" class="code"><code>void main() {
+
+	int n = 1+1;
+	String s1 = &quot;La somma di 1 e 1 è ${n}&quot;;
+
+	print(s1);
+
+}</code></pre><hr id="2a69a7ab-320b-40ce-8726-826d9efc7c81"/><h3 id="1f83bef3-c8c3-4166-a598-8a5736dc272d" class="">Metodi predefiniti (per stringhe)</h3><p id="130d1a22-3270-4461-a7af-a94abd665870" class="">
+</p><p id="734db661-68ec-4c41-bff8-c43109134d93" class="">Ecco alcuni metodi predefiniti per operare sulle stringhe:</p><p id="53d35dd8-9d15-49c2-9456-3a7c0b7bac90" class="">
+</p><ol type="1" id="f6a847ee-83b0-4de3-a547-7072e7245e48" class="numbered-list" start="1"><li><span style="border-bottom:0.05em solid"><strong>isEmpty </strong></span>⇒ Ritorna ‘True’ se la stringa è vuota</li></ol><ol type="1" id="55e86663-7380-4b51-bb0f-b16f059e8a46" class="numbered-list" start="2"><li><span style="border-bottom:0.05em solid"><strong>length </strong></span>⇒ Ritorna la lunghezza della stringa includendo anche gli spazi, i tab e i caratteri a capo</li></ol><p id="c06a8a91-b348-449a-ba23-a166e810b4f5" class="">
+</p><p id="5e0e6460-0aea-4a2a-8926-d5391550f2f6" class="">Esempio</p><pre id="759ac094-63aa-4bf3-9671-2e3072413f8c" class="code"><code>void main() {
+
+	String s1 = &quot;Programming Hub&quot;;/t
+
+	print(&quot;La lunghezza della stringa è: ${str.length}&quot;);
+
+}</code></pre><p id="a82eaf33-4984-4f8a-9630-a70b1f6e0fb1" class="">
+</p><ol type="1" id="848c7eba-8930-4b87-90b7-564bf90c52e4" class="numbered-list" start="3"><li><strong><span style="border-bottom:0.05em solid">toLowerCase()</span></strong> ⇒ Converte tutti i caratteri della stringa in <strong>minuscolo</strong></li></ol><ol type="1" id="672cbc20-1a70-498d-ab4c-9a6d7b44f8d5" class="numbered-list" start="4"><li><span style="border-bottom:0.05em solid"><strong>toUpperCase()</strong></span> ⇒ Converte tutti i caratteri della stringa in <strong>maiuscolo</strong></li></ol><ol type="1" id="b04fa34d-0bae-48a3-9821-bfa3d5460fb5" class="numbered-list" start="5"><li><span style="border-bottom:0.05em solid"><strong>trim()</strong></span> ⇒ Ritorna la stringa <strong>senza</strong> spazi vuoti iniziali e finali</li></ol><ol type="1" id="5fb7da1a-5689-4427-b0e9-3d419fc5dcc5" class="numbered-list" start="6"><li><span style="border-bottom:0.05em solid"><strong>split()</strong></span> ⇒ Divide la stringa nel numero di parti specificato e ritorna una lista di sottostringhe </li></ol><p id="839ad132-1f88-4afc-a399-3fbc9d029015" class="">
+</p><p id="ea2a65b1-f47d-4e7c-806f-ee3314ed670b" class="">Esempio (split())</p><pre id="8e787563-10cd-41d0-89bc-cba4cead7e87" class="code"><code>void main() {
+  var input = &quot;Frase di esempio&quot;;
+
+  print(input.split(&quot; &quot;));
+
+}</code></pre></div></article></body></html>

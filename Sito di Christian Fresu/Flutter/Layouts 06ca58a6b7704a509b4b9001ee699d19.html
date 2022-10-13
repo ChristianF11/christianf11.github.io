@@ -1,0 +1,685 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Layouts</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="06ca58a6-b770-4a50-9b4b-9001ee699d19" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📱</span></div><h1 class="page-title">Layouts</h1></header><div class="page-body"><p id="f2cf5c79-11d3-4060-ba93-9129d8235aac" class="">
+</p><nav id="a86b29a0-7190-411f-968b-41f9183e4fda" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#836efb06-ba72-4165-894c-8c364570d95d">Introduzione</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#27a9908c-075d-4cf8-ae20-76976907ba1d">1. <em>Single Child Widget</em></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e9e7c4b0-830d-45b7-bbfb-7b339e870d20">Alcuni tipi di <em>Single Child Widget</em> in Flutter:</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e2f7e30e-96e9-4e78-ac53-f10a441e7a3f">2. <em>Multiple Child Widget</em></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c8282e28-c4a5-458a-822c-ce34995c6507">Alcuni tipi di <em>Multiple Child Widget</em> in Flutter:</a></div></nav><hr id="d3155d9b-8ccb-4348-bb04-f1fef44c8b35"/><h3 id="836efb06-ba72-4165-894c-8c364570d95d" class="">Introduzione</h3><p id="d507d846-9cc4-4042-a611-0dac33fbd23e" class="">
+</p><ul id="ded016ae-ea2a-455f-b7f2-b43aeab4751e" class="bulleted-list"><li style="list-style-type:disc">Tutto ciò che è compreso nell’applicazione è un widget (comprese icone, immagini e gli stessi layout)</li></ul><ul id="1d13fc28-1175-4007-9e51-c1fe0ce74be9" class="bulleted-list"><li style="list-style-type:disc">Una composizione di più widget crea un widget complesso, che prende il nome di <span style="border-bottom:0.05em solid"><strong>Layout</strong></span></li></ul><p id="ba384955-f88a-44c2-9d87-8cb431449416" class="">
+</p><p id="c9e7ace4-5661-4e10-b33b-9336f12825d0" class="">Un semplice Layout può essere fatto in pochi semplici passi:</p><p id="ec76c5c1-850f-4b63-89f1-aeaff88e19ae" class="">
+</p><ol type="1" id="acd6c658-1ec8-4f80-9004-cae6beafa1ef" class="numbered-list" start="1"><li>Selezionare il <mark class="highlight-yellow_background"><span style="border-bottom:0.05em solid">widget “</span></mark><mark class="highlight-yellow_background"><span style="border-bottom:0.05em solid"><em>Layout</em></span></mark><mark class="highlight-yellow_background"><span style="border-bottom:0.05em solid">”</span></mark></li></ol><ol type="1" id="908b0e25-d53c-4f64-a885-05e1ff8b3a1a" class="numbered-list" start="2"><li>Creare un <mark class="highlight-yellow_background"><span style="border-bottom:0.05em solid">widget visibile </span></mark></li></ol><ol type="1" id="ae4fb02f-f9a6-4537-b7f2-d72ac2552332" class="numbered-list" start="3"><li>Inserire il <mark class="highlight-yellow_background">widget visibile all’interno del widget “</mark><mark class="highlight-yellow_background"><em>Layout</em></mark><mark class="highlight-yellow_background">”</mark></li></ol><ol type="1" id="f2342d60-c9d8-4511-820f-697d2a28ca50" class="numbered-list" start="4"><li>Aggiungere il <em>Layout</em> nella pagina in cui si vuole mostrare</li></ol><p id="5f9e8a60-3557-471d-90ec-d1ac402ebeda" class="">
+</p><p id="29b1a3f0-08ae-450c-8dd2-26dbd9ae99f6" class="">Esistono due tipi di Layout:</p><p id="91442f2b-f092-4a8e-9b84-ee54a9ccdcbd" class="">
+</p><ol type="1" id="ffaed62a-c7a5-40aa-b50a-1334b8fbf89c" class="numbered-list" start="1"><li><em>Single Child widget</em></li></ol><ol type="1" id="cf249f3e-df4f-4256-9db7-e8017e8f6889" class="numbered-list" start="2"><li><em>Multiple Child widget</em></li></ol><p id="b06fc091-107b-4fca-98fc-651959375441" class="">
+</p><hr id="cf9ec4e9-3a16-4cd4-9672-120f03869241"/><h2 id="27a9908c-075d-4cf8-ae20-76976907ba1d" class="">1. <em>Single Child Widget</em></h2><p id="47efc8b9-71f9-4c6e-b99b-bac4537b662e" class="">
+</p><ul id="fc45b8d8-5f25-43ef-a5f5-b040658b8c71" class="bulleted-list"><li style="list-style-type:disc">In questo tipo di layout è presente un solo elemento figlio (all’interno del Layout che è il genitore)</li></ul><ul id="85eb5361-3bbe-4d9a-addc-69d8ce2e2e18" class="bulleted-list"><li style="list-style-type:disc">Spesso questo tipo di layout, se usato correttamente, rende più leggibile il codice</li></ul><p id="66db1d54-041f-4ccc-8540-94ae008d6a3e" class="">
+</p><h3 id="e9e7c4b0-830d-45b7-bbfb-7b339e870d20" class="">Alcuni tipi di <em>Single Child Widget</em> in Flutter:</h3><p id="46b8c863-fbf1-4791-93ae-8c27faa7795c" class="">
+</p><ul id="5ab0c9a0-e78f-4142-b7a7-56b0a49c7c57" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong>Container</strong></span> ⇒ Funge da sfondo e permette di customizzare il colore, il posizionamento e la dimensione dei widgets</li></ul><ul id="3f53374f-5789-41f8-9474-b6db49fe28e7" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong>Padding</strong></span> ⇒ Viene usato per “riordinare” gli spazi del widget figlio</li></ul><ul id="78cd7798-679c-4d87-98fa-9b50c9659cf0" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong>Center</strong></span> ⇒ Permette di allineare un widget al centro</li></ul><ul id="480f6d67-9fea-423c-9eae-b5919db2389a" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong>Align</strong></span> ⇒ Allinea un widget figlio all’interno del layout</li></ul><ul id="6903afa6-edca-4069-8ef0-ec4e573fd329" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong>SizedBox</strong></span> ⇒ Permette di stabilire le dimensioni del widget figlio</li></ul><ul id="56012d19-ed2e-433b-82dc-9802d24d714f" class="bulleted-list"><li style="list-style-type:disc"><strong><span style="border-bottom:0.05em solid">AspectRatio</span></strong> ⇒ Permette di mantenere le dimensioni del widget figlio rispettando le proporzioni stabilite</li></ul><ul id="9c1f6dbe-10f3-4941-86e7-01b29ba39055" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong>FractionallySizedBox</strong></span> ⇒ Permette di settare le dimensioni del widget figlio, in accordo con lo spazio disponibile</li></ul><ul id="3dbf46e1-161e-438b-8660-44f21d40d483" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong>LimitedBox</strong></span> ⇒ Permette di limitare le dimensioni se il widget è senza vincoli</li></ul><ul id="48ce6539-5af7-4e5b-968c-45af464a5f37" class="bulleted-list"><li style="list-style-type:disc"><strong><span style="border-bottom:0.05em solid">OffStage</span></strong> ⇒ Usato per misurare le dimensioni di un widget senza portarlo su schermo</li></ul><ul id="5fc91491-267b-4f4b-a378-f3e871535792" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong>OverflowBox</strong></span> ⇒ Permette di stabilire diversi vincoli che il widget figlio eredita dal genitore</li></ul><p id="21c4ba1d-b25f-4085-b286-980b35ebe861" class="">
+</p><hr id="167665f5-ae2b-453f-aad6-2d9ffcb68c8f"/><h2 id="e2f7e30e-96e9-4e78-ac53-f10a441e7a3f" class="">2. <em>Multiple Child Widget</em></h2><p id="bb96f102-4262-4a8c-9445-c1e09213db21" class="">
+</p><ul id="33e5c3a5-120f-4dd1-8790-e7b2f1b3b44d" class="bulleted-list"><li style="list-style-type:disc">Si tratta di widget che hanno più di un figlio all’interno del Layout (widget genitore)</li></ul><ul id="72c926bc-f12e-4706-beb6-5b7bfee8149b" class="bulleted-list"><li style="list-style-type:disc">Il Layout di questi widget è unico</li></ul><ul id="6a224146-234c-41d1-896f-87958f6d3ec5" class="bulleted-list"><li style="list-style-type:disc">Anche questi, se usati correttamente rendono il codice più leggibile</li></ul><p id="e54ee654-b1bb-4696-887f-1a0af6064592" class="">
+</p><h3 id="c8282e28-c4a5-458a-822c-ce34995c6507" class="">Alcuni tipi di <em>Multiple Child Widget</em> in Flutter:</h3><p id="f24f98ee-4cb7-40ac-9396-6d6a227ed4a7" class="">
+</p><ul id="96c1ca8c-d6a8-4e2f-9a3d-40091e3d20d4" class="bulleted-list"><li style="list-style-type:disc"><strong><span style="border-bottom:0.05em solid">Row</span></strong> ⇒ Permette di inserire widget in orizzontale</li></ul><ul id="b94e450e-afb3-46bd-bf48-e069c78bc9ac" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong>Column </strong></span>⇒ Permette di inserire widget in verticale</li></ul><ul id="0f7bd88f-26d7-45bb-a0d3-3d8697a5b1fd" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong>ListView </strong></span>⇒ È uno <em>Scrollable Widget</em>. Permette di inserire widget o in orizzontale o in verticale senza vincoli di spazio (<em>Scrollable </em>significa che è possibile scorrere la lista e vedere tutti gli elementi a prescindere da quanti sono)</li></ul><ul id="bb89e6d8-29ee-48c8-a6a0-b0cd535912fb" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong>GridView </strong></span>⇒ Permette di rendere più widget figli <em>Scrollable</em> (in poche parole  una sorta di array a 2D di widgets)</li></ul><ul id="fcbc4e01-0a1c-4ce9-97f9-018c872fd739" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong>Expanded </strong></span>⇒ Ammette il figlio di una “Row” o di una “Column”</li></ul><ul id="b6c66b07-1cf5-4c42-a351-16592499887b" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong>Table </strong></span>⇒ Permette di gestire i figli in un <em>widget-tabella</em></li></ul><ul id="9b3f3f6a-975d-490b-9828-9e9cbcb6930f" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong>Flow </strong></span>⇒ Permette di implementare <em>flow-based</em> widget</li></ul><ul id="a54056ac-67c8-4ef0-9eb3-bf0254d5877b" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong>Stack </strong></span>⇒ Permette di sovrapporre più widget </li></ul><p id="8d559fa5-7d29-4de2-a9dd-568f4eeecd46" class="">
+</p><hr id="a3d4cdd8-a599-4c87-a90f-0caf1e7751eb"/><p id="87ebb5a6-9a8c-43c5-9628-04535a6cdcde" class="">
+</p></div></article></body></html>

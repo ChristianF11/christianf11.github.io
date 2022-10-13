@@ -1,0 +1,811 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>File Operations</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="f306aac3-b7a6-4b23-bcf5-a84c88bf2546" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📄</span></div><h1 class="page-title">File Operations</h1></header><div class="page-body"><p id="645abd74-cd75-4aaf-a9bf-09a43fd0702b" class="">
+</p><nav id="68573232-2d37-4151-a935-084de8ce08bc" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e4265b3-e43a-42b7-bfd7-afd8ec23a836">Creare un file </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#139ba24d-6b5b-41b3-ab83-a7473d6c08fe">Scrivere in un file</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#beb9a255-8f1c-4b63-9821-1920f4c1b5f1">Leggere un file</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c37088b2-b6e4-4cf5-9c47-0961eb25c78f">Progetto di esempio (con metodo ‘ReadLine’)</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6e3d0bf9-0cd3-4d83-8ae4-8aad9f5d2c83">Eliminare un file</a></div></nav><hr id="f1eb7be1-328f-4d1d-b595-ed1186fad389"/><p id="fed0c955-2523-40d6-942e-89f3a84525c7" class="">
+</p><ul id="74c61f83-d900-4d30-85f4-4f6a852453c9" class="bulleted-list"><li style="list-style-type:disc">In Java si può leggere il contenuto di altri file o modificarlo attraverso un programma</li></ul><ul id="32b07010-cdb4-4a57-be00-60c0cc6a75c5" class="bulleted-list"><li style="list-style-type:disc">Per fare ciò bisogna utilizzare delle classi dichiarate nel <span style="border-bottom:0.05em solid">pacchetto ‘java.io’</span></li></ul><p id="6c55d508-20c2-4a60-8aa8-19941ee35b0c" class="">
+</p><hr id="4c783a95-5a87-44d8-8087-9c98833ce855"/><h3 id="2e4265b3-e43a-42b7-bfd7-afd8ec23a836" class="">Creare un file </h3><p id="10b9f22d-bf17-4c38-8f13-63dcc82efe28" class="">
+</p><ul id="fff526c1-3794-4aea-a9e2-3029c18e0e1e" class="bulleted-list"><li style="list-style-type:disc">Per creare un nuovo file bisogna usare il metodo </li></ul><pre id="cf8c55c7-f2c1-4bf9-9232-dd623b85cf9f" class="code"><code>createNewFile();</code></pre><p id="f6bf4bf1-14fe-4291-9d80-481e866c45e9" class="">
+</p><ul id="ce100edb-4bf9-412b-8651-1bcd58585bbe" class="bulleted-list"><li style="list-style-type:disc">Il ritorno di questo metodo è un booleano che dice sei il file è stato creato o no</li></ul><p id="4b6e07f6-a578-4ac8-9fdf-377e4f367c3b" class="">
+</p><p id="1ef5c2c7-4abd-4243-816f-e2115d6150f0" class="">Esempio (creazione file)</p><pre id="bfa6c7f7-3c8a-4dcb-a2d9-0291fb45727d" class="code"><code>import java.io.File;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		File file = new File(&quot;esempio.txt&quot;); //Viene istanziato un nuovo oggetto
+
+		try {
+
+			boolean newFile = file.createNewFile(); //Creazione del file
+			System.out.println(&quot;Creazione riuscita? &quot; + newFile); //Esito true o false
+
+		}
+
+		catch (Exception e) {
+
+			System.out.println(&quot;Ooops! C&#x27;è stato un errore&quot;); //Gestione eccezione 
+
+		}
+
+	}
+
+}</code></pre><p id="0cc4e8e1-4ade-4809-8643-ce680eb7ce27" class="">
+</p><hr id="82c23072-c519-4bba-86f7-3c20822dc425"/><h3 id="139ba24d-6b5b-41b3-ab83-a7473d6c08fe" class="">Scrivere in un file</h3><p id="69a176a1-137d-4d12-a55e-09655dd944ce" class="">
+</p><ul id="4860ba4a-c22f-4bd8-a2d9-56330f77aedc" class="bulleted-list"><li style="list-style-type:disc">Per scrivere in un file esistono diverse classi </li></ul><p id="03f7b63f-b6e6-4fb0-97ea-000b3f6c0630" class=""><div class="indented"><ol type="1" id="7afe4796-e442-43c6-8207-fa8978105711" class="numbered-list" start="1"><li><span style="border-bottom:0.05em solid"><strong>FileWriter</strong></span> = Per scrivere interi e stringhe </li></ol><ol type="1" id="07da1800-13f5-4490-b02e-ac4801653644" class="numbered-list" start="2"><li><span style="border-bottom:0.05em solid"><strong>BufferedWriter</strong></span> = Usata se i numeri da scrivere sono molti. Migliora le prestazioni del programma</li></ol><ol type="1" id="89032a81-2fd0-428d-a91e-19e8c0e95d28" class="numbered-list" start="3"><li><span style="border-bottom:0.05em solid"><strong>FileOutputStream</strong></span> = Usata per scrivere direttamente tutti i tipi di dati in un file</li></ol><p id="8871ebb2-18f9-4383-85fe-1cd99a182041" class="">
+</p></div></p><ul id="d5bbb88c-99ed-42f3-b313-4f3ecb94f0b1" class="bulleted-list"><li style="list-style-type:disc">Per scrivere è necessario usare il metodo</li></ul><pre id="455876be-bcb2-48c2-9da5-23636160f7e1" class="code"><code>write();</code></pre><p id="c92a017e-5ecf-401b-b908-d6f1b5d43d77" class="">
+</p><p id="6cf73bec-1f5b-4dc4-9fbe-938954e7ee88" class="">Esempio </p><pre id="8da382a3-95b6-46a9-b5b1-600948477cbe" class="code"><code>import java.io.FileOutputStream;
+import java.io.File;
+import java.io.IOException;
+
+pubic class Main {
+
+	public static void main(String args[]) {
+
+		FileOutputStream writeFile = null;
+		File file;
+		
+		String myText = &quot;Scrivo qualcosa nel file&quot;;
+
+		try {
+
+			file = new File(&quot;esempio.txt&quot;); //Nuovo oggetto di tipo &#x27;File&#x27;
+			writeFile = new FileOutputStream(file); //Oggetto di tipo &#x27;FileOutputStream&#x27;
+
+			byte[] byteData = myText.getBytes(); //Conversione da string a bytes
+
+			writeFile.write(byteData); //Viene scritto il dato convertito in byte (byteData)
+			
+			System.out.println(&quot;Operazione andata a buon fine!&quot;);
+
+		}
+
+		catch(IOException ioe) {
+
+			System.out.println(&quot;Ooops! C&#x27;è stato qualche problema&quot;); //gestione eccezione
+
+		}
+
+	}
+
+}</code></pre><p id="3fa3e397-b425-4417-8798-e01336c520e0" class="">
+</p><hr id="55e3672f-d195-4b87-8f0c-0ac980511989"/><h3 id="beb9a255-8f1c-4b63-9821-1920f4c1b5f1" class="">Leggere un file</h3><p id="955e5dbe-2bbf-4039-990d-fb25d68c4721" class="">
+</p><ul id="d222e462-4833-4ee5-a251-4116950582da" class="bulleted-list"><li style="list-style-type:disc">Si possono usare due classi </li></ul><p id="b9797530-94fd-4484-84e5-733da69cb713" class=""><div class="indented"><ol type="1" id="b5ad050a-9ba9-4089-99f8-bfbba92d29ed" class="numbered-list" start="1"><li><span style="border-bottom:0.05em solid">FileInputStream</span> </li></ol><ol type="1" id="c6958073-e06d-4e46-89fd-bf0bbdb90144" class="numbered-list" start="2"><li>BufferedReader = Per leggere file lunghi (e migliorare l’efficienza)</li></ol><ol type="1" id="afeacd95-8b16-4049-b915-4c020ef9ac51" class="numbered-list" start="3"><li>A seguire, si userà il metodo </li></ol><pre id="7e27d940-e450-413a-93fb-0306674fb438" class="code"><code>read();</code></pre><p id="1a228398-a051-4a79-bc97-becff9a7ae4a" class="">
+</p></div></p><p id="84024948-de10-4621-930b-a5b734e7ae9f" class="">Esempio </p><pre id="5e2816ee-bb3e-4055-89d4-1656b6e04acd" class="code"><code>import java.io.FileInputStream;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		try {
+
+			FileInputStream myFile = new FileInputStream(&quot;esempio.txt&quot;);
+			int i = 0;
+			while(i=myFile.read()!=-1) //Viene letto ogni carattere del file
+				System.out.println((char)i); //Vengono stampati tutti i caratteri
+
+			myFile.close(); //Viene chiuso il file dopo la lettura
+
+		}
+
+		catch (Exception e) {
+
+			System.out.println(e.getMessage());
+
+		}
+
+	}
+
+}</code></pre><p id="ac075afb-09a3-4cff-a6f0-72fc64415bbd" class="">
+</p><hr id="29b3aa46-8c55-4dd7-9482-9fce2651da54"/><h3 id="c37088b2-b6e4-4cf5-9c47-0961eb25c78f" class="">Progetto di esempio (con metodo ‘ReadLine’)</h3><p id="3f1b97ba-1cb0-4a35-8c65-bc0b5511b6db" class="">
+</p><pre id="5fa6d3d0-7dd0-423f-af86-1bd6809c3a55" class="code"><code>parola=fileinput.readLine();
+while(parola!=null){
+
+	//Ogni volta che si incontra uno spazio, termina l&#x27;elemento dell&#x27;array
+	parolette=parola.split(&quot; &quot;); 
+
+	//Passo come parametri gli elementi dell&#x27;array 
+	p=new Persona(parolette[0],parolette[1],Integer.parseInt(parolette[2]),parolette[3].charAt(0));
+	
+	//Viene inserita una nuova persona nell&#x27;Array List
+	el.aggiungiPersona(p);
+	parola=fileinput.readLine();
+
+}
+System.out.println(&quot;Caricamento dei dati eseguito&quot;);</code></pre><p id="768c4683-1849-434d-9472-105762951a75" class="">
+</p><ul id="24fae3f3-7cb4-4b1d-8a23-3a48f437ffea" class="bulleted-list"><li style="list-style-type:disc">Variabili utilizzate</li></ul><pre id="7ab25db6-df3b-4583-a2b8-a1d2adb6cd04" class="code"><code>String parolette[];
+Scanner input = new Scanner(System.in);
+BufferedReader fileinput = new BufferedReader(new FileReader(&quot;FileInput/Elenco.txt&quot;));
+String parola;
+ArrayList&lt;Persona&gt; sup = new ArrayList&lt;&gt;();
+Persona p;
+ElencoPersona el=new ElencoPersona();
+int scelta;</code></pre><p id="cffd8602-8998-495a-9299-1a9b259454ef" class="">
+</p><ul id="7f94e3eb-ae5d-4b33-99d5-712768213e3b" class="bulleted-list"><li style="list-style-type:disc">Pacchetti utilizzati </li></ul><pre id="7dfb781b-f2d9-4c90-af07-e24db32c314e" class="code"><code>import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;</code></pre><p id="40ca4485-0665-473a-b98e-b43e44d66598" class="">
+</p><ul id="ddb829ef-5e1f-4f5b-a0dc-f06b736095bf" class="bulleted-list"><li style="list-style-type:disc">PROGETTO COMPLETO</li></ul><p id="164750d8-09cd-4ae4-9893-07b25444f549" class="">
+</p><figure id="93a5e9e7-bc1e-4daf-9ff8-80acc9d9f104"><div class="source"><a href="File%20Operations%20f306aac3b7a64b23bcf5a84c88bf2546/esercizioFile_2.zip">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7997c086-239d-44e3-bc24-7fd36562df53/esercizioFile_2.zip</a></div></figure><hr id="bf8f566c-dbdb-41e3-9181-254373235280"/><h3 id="6e3d0bf9-0cd3-4d83-8ae4-8aad9f5d2c83" class="">Eliminare un file</h3><p id="5eff1141-93aa-4e06-96b8-504c2a31c856" class="">
+</p><ul id="0b6218b4-14d7-4a60-85c3-8de48c105ea8" class="bulleted-list"><li style="list-style-type:disc">Si usa il metodo </li></ul><pre id="47a55ff6-3eac-413f-bb83-2520b3d80655" class="code"><code>delete(); //Metodo che appartiene alla classe &#x27;File&#x27;</code></pre><ul id="cb782bd4-a6f2-4817-ac2f-8c61dcf4172c" class="bulleted-list"><li style="list-style-type:disc">Questo metodo ritorna un valore booleano che dice se il file è stato eliminato o no</li></ul><p id="9daecef1-e027-40f7-b129-c840910628cf" class="">
+</p><p id="7d61603a-0074-42be-9c16-3cab7816b8d0" class="">Esempio</p><pre id="b117827c-7a24-4338-987e-da462f6e5db6" class="code"><code>import java.io.File;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		File file = new File(&quot;esempio.txt&quot;); //Questo è il file da eliminare
+		boolean deleteMe = file.delete(); //Viene usato il metodo per eliminare il file
+
+		System.out.println(&quot;File eliminato? &quot; + deleteMe); //Esito operazione
+
+	}
+
+} </code></pre><p id="dda9e724-af7f-4b70-a872-0be9692bf177" class="">
+</p><figure id="cbb8d34b-c0be-4137-b394-0ff517b27d2c"><div class="source"><a href="File%20Operations%20f306aac3b7a64b23bcf5a84c88bf2546/esercizioFile_2%201.zip">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/152a3e5b-30b7-424f-b782-8ff6ca38701c/esercizioFile_2.zip</a></div></figure></div></article></body></html>

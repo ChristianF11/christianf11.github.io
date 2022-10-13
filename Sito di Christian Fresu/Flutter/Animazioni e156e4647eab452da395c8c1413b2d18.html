@@ -1,0 +1,695 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Animazioni</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="e156e464-7eab-452d-a395-c8c1413b2d18" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📳</span></div><h1 class="page-title">Animazioni</h1></header><div class="page-body"><nav id="4e9ee7ee-9dab-4aba-8169-8954a33967e3" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e23ce4bf-77dd-4e72-a3d4-4ec3e2a5e39b">Introduzione</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5f646ccf-85b9-42e6-81fb-ecb2f2d65849">1. <em>Tween Animation</em></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#be7729b7-4174-4daa-a866-bfb6b1e46db4">2. <em>Physic-based Animations</em></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1344063a-5107-4128-a059-35eecaeca591">I 3 pilastri dell’animazione</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#468b2ccd-497d-4b50-acf5-c3c504bb3e7d">1. <em>Ticker</em></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#578380af-80f4-43e0-b649-6ef799952715">2. <em>Animation Class</em></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5c3c838e-27eb-46db-8faf-9af801f9e8c0">3. <em>AnimationController</em></a></div></nav><hr id="c564f621-d4f9-4d56-a0b6-396477fa2356"/><h2 id="e23ce4bf-77dd-4e72-a3d4-4ec3e2a5e39b" class="">Introduzione</h2><p id="b40b27d5-2a16-4c42-9c6b-c14a4d3d6053" class="">
+</p><ul id="e699ef99-3488-4ec9-88e2-4bfeb9c1e177" class="bulleted-list"><li style="list-style-type:disc">Quando viene premuto un bottone o si cambia pagina si sta assistendo ad un’animazione (anche se semplice)</li></ul><ul id="7813aff9-7780-4641-b4fa-5c89c9579a05" class="bulleted-list"><li style="list-style-type:disc">Le animazioni giocano un ruolo chiave all’interno di un’applicazione in quanto migliorano notevolmente l’esperienza dell’utente</li></ul><p id="076a17c6-030a-4bd3-a160-e3171b38e25b" class="">
+</p><ul id="d2767e3e-8302-4983-b2f0-194a1435492d" class="bulleted-list"><li style="list-style-type:disc">Le animazioni in Flutter si dividono in due categorie:</li></ul><p id="fceb4a70-da79-45c8-81f2-9eb1cb6a93f3" class=""><div class="indented"><ol type="1" id="e0ae5883-8680-4b80-bcfe-4068e3647c48" class="numbered-list" start="1"><li><em>Tween Animation</em></li></ol><ol type="1" id="bb334e58-58e2-43fa-b64a-5e25f53c4455" class="numbered-list" start="2"><li><em>Physics-based Animation</em></li></ol><p id="84dd8fbb-0ae6-4778-98f5-f62f2369d90d" class="">
+</p></div></p><hr id="153de271-cc55-416e-84c5-19f7bae40922"/><h3 id="5f646ccf-85b9-42e6-81fb-ecb2f2d65849" class="">1. <em>Tween Animation</em></h3><p id="cf3e65f0-4423-4438-b5cd-ed144acef746" class="">
+</p><ul id="514c8f42-9baa-4f3f-917d-5286b14f4920" class="bulleted-list"><li style="list-style-type:disc">Animazioni utilizzate su un oggetto all’interno della pagina</li></ul><ul id="65b828d7-37c8-4ce2-9dad-4b4e71d8dc93" class="bulleted-list"><li style="list-style-type:disc">È importante definire il punto di inizio e di fine dell’animazione</li></ul><ul id="3b3a45be-edfd-4d79-919b-c6500bbc4110" class="bulleted-list"><li style="list-style-type:disc"><em>Inbetweens</em> sono le immagini che creano l’illusione del movimento</li></ul><p id="4ee7c6df-85cd-440f-8bd6-ec86c1eef842" class="">
+</p><p id="d7637dcc-e312-4a0c-ba13-457685b0bb0f" class="">ESEMPIO</p><pre id="974079d1-ab3d-4bcb-b266-45073ecc41c9" class="code"><code>ColorTween {
+	begin: color.green,
+	end: color.blue,
+}</code></pre><p id="1b8e9c4c-841f-4e17-a494-93cfc3cf8729" class="">
+</p><hr id="76057f00-1a77-455f-b229-9cfbb9860add"/><h3 id="be7729b7-4174-4daa-a866-bfb6b1e46db4" class="">2. <em>Physic-based Animations</em></h3><p id="50803835-6f5e-48c6-a5e2-b3fa714e64e9" class="">
+</p><ul id="37347654-707c-4abd-890f-7426691e7999" class="bulleted-list"><li style="list-style-type:disc">Questo tipo di animazione invece riguarda la presentazione di un comportamento fisico più plausibile</li></ul><p id="30f10fdd-4652-4c86-9aa1-0c9dfb53f1fd" class="">
+</p><hr id="b56bf930-6cfd-423c-ba95-54ede5076871"/><h2 id="1344063a-5107-4128-a059-35eecaeca591" class="">I 3 pilastri dell’animazione</h2><p id="7b3be465-3ffd-49f5-affb-8ef9278d6b43" class="">
+</p><ol type="1" id="7382d6b3-d98a-48d6-b1f9-9cc451f2776c" class="numbered-list" start="1"><li><em>Ticker</em></li></ol><ol type="1" id="18653fc7-cf22-41f2-8a2b-1709beb2bdb8" class="numbered-list" start="2"><li><em>Animation Class</em></li></ol><ol type="1" id="1c643c38-98b1-4e34-b01e-f33b855b1515" class="numbered-list" start="3"><li><em>AnimationController</em></li></ol><p id="e8590fa3-9905-42ca-bfc5-06b6385b06ba" class="">
+</p><hr id="33addb43-009b-4d1d-881c-137de00e92ae"/><h3 id="468b2ccd-497d-4b50-acf5-c3c504bb3e7d" class="">1. <em>Ticker</em></h3><p id="cf1d9650-f4c2-4f47-9b9c-387f24622874" class="">
+</p><ul id="043f498f-1a4f-49a9-afa2-f8807323999c" class="bulleted-list"><li style="list-style-type:disc">Va immaginato come il tick di una lancetta dell’orologio</li></ul><ul id="aa0dfe6f-119f-4531-b665-3ff2161d7189" class="bulleted-list"><li style="list-style-type:disc">Invia segnali dopo un determinato intervallo di tempo</li></ul><ul id="b79b69b8-cccd-49b8-951f-9041acfe8be1" class="bulleted-list"><li style="list-style-type:disc">Il <em>Ticker </em>permette di sincronizzare i vari frames in <em>Animation</em></li></ul><p id="0329727f-a6c6-482d-9f53-deb9437e654f" class="">
+</p><hr id="fa62c296-d4cd-4985-97a1-66c1337cdfc6"/><h3 id="578380af-80f4-43e0-b649-6ef799952715" class="">2. <em>Animation Class</em></h3><p id="006259e7-5fe5-424a-aad4-6d09a952c7ce" class="">
+</p><ul id="6c701ca0-8ef7-40f7-9c57-1edd64ad53da" class="bulleted-list"><li style="list-style-type:disc">È il blocco principale e fondamentale del sistema di animazione</li></ul><ul id="1a6de2a8-ec11-458b-a617-46f8e2979eed" class="bulleted-list"><li style="list-style-type:disc">In <em>Animation</em> gli oggetti sono presi come parametri</li></ul><ul id="b4139a07-280e-45a6-b7de-11b2c12aa66c" class="bulleted-list"><li style="list-style-type:disc">Il widget “ascolta” questi parametri (iniziali) e in seguito “ascolta” le variazioni di valore per capire come effettuare le modifiche </li></ul><ul id="a57dacbd-84cf-49b5-9b36-af5ebe0c01a9" class="bulleted-list"><li style="list-style-type:disc">Quando il valore del parametro cambia, lo stato dell’animazione (frame) cambia</li></ul><p id="765da679-c678-496b-a3a5-bf23be9a4c15" class="">
+</p><p id="ae077c91-c9b7-47f9-bdbd-01fe8963822f" class="">Le classi di animazione più comuni sono:</p><p id="a6d30589-e986-4bc4-85d2-2aa216c2ae32" class="">
+</p><p id="e2d3206a-efcf-4b26-ad64-2bc87eb01a58" class=""> 1.</p><pre id="418662e0-2c8d-4604-9fba-53c28f6b272d" class="code"><code>Animation&lt;double&gt;
+//Modifica i valori compresi tra due numeri decimali</code></pre><p id="58309e4b-03a2-4d2f-9cb9-4f76dee64625" class="">
+</p><p id="9e4e06b7-2b59-4d93-a80c-e7003468732c" class="">2.</p><pre id="d1b2c8ec-90a7-4d36-9b17-0d4dd7e71212" class="code"><code>Animation&lt;Color&gt;
+//Modifica i colori compresi tra due colori </code></pre><p id="9e16e1ea-76ff-45a4-9c6d-e8fafff9c517" class="">
+</p><p id="1e4e7644-82be-459f-a44a-dff76d0316cb" class="">3.</p><pre id="8c5ea55b-9b1c-4c9e-9132-1d5322c5d796" class="code"><code>Animation&lt;Size&gt;
+//Modifica le dimensioni comprese tra il valore di due dimensioni</code></pre><p id="cc14b157-87a7-4c74-b606-d939ea4bd71a" class="">
+</p><hr id="2796160e-76fd-4c60-9d14-0e8e42f55ade"/><h3 id="5c3c838e-27eb-46db-8faf-9af801f9e8c0" class="">3. <em>AnimationController</em></h3><p id="3a04e633-0466-4d10-9cfd-9f89a113d1f2" class="">
+</p><ul id="843d4372-dbac-4197-a6be-d132d3b5e8c6" class="bulleted-list"><li style="list-style-type:disc">Questa classe permette di controllare le animazioni</li></ul><ul id="ceffee0e-30a9-448a-b491-461b34f5845a" class="bulleted-list"><li style="list-style-type:disc">Restituisce nuovi valori ogni volta che c’è un cambiamento nel frame</li></ul><ul id="1bac77b2-3a6e-414d-a70a-802670e5e588" class="bulleted-list"><li style="list-style-type:disc">Offre il controllo di: inizio, fine, avanti e ripetizione dell’animazione</li></ul><p id="abd9c2c4-c37e-4a44-9a2f-3ca7dfc719ad" class="">
+</p></div></article></body></html>

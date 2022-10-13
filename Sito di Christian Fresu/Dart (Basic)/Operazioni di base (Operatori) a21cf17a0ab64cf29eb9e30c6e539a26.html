@@ -1,0 +1,708 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Operazioni di base (Operatori)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a21cf17a-0ab6-4cf2-9eb9-e30c6e539a26" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">➕</span></div><h1 class="page-title">Operazioni di base (Operatori)</h1></header><div class="page-body"><p id="b47de1e2-5c53-4c50-aa78-5d04a4b2eccf" class="">
+</p><nav id="878a85ab-89db-43b7-afd0-9610500aadc2" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2bccf5e0-782a-4c98-8c9f-f708ced4af94">1. Operatori aritmetici</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5c902ce2-1825-49c6-aa44-2176ab1974e6">2. Operatori di comparazione</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2d4fc0ca-afc6-4f62-94fc-a8d076038e62">3. <em>Type Test Operator</em></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9e743b78-50e5-418e-aad7-3c852a9126c4">4. Operatori logici</a></div></nav><hr id="9edfc71c-f68e-4cd3-b167-d6053bcabfa3"/><p id="38e4bc45-0ca1-4b0f-815f-4f5ea4c846b9" class="">
+</p><p id="8c43a1bc-1e1e-45cb-ab1d-d1220745ea01" class="">In dart sono presenti diversi <strong><span style="border-bottom:0.05em solid">operatori</span></strong>:</p><p id="a76f306c-cc92-43c7-8569-28d583c43c06" class="">
+</p><ul id="85361fd0-545f-428d-b521-982bddc58705" class="bulleted-list"><li style="list-style-type:disc">Operatori aritmetici</li></ul><ul id="b065665e-11b8-450b-a73d-0f7dd8a5f253" class="bulleted-list"><li style="list-style-type:disc">Operatori di comparazione</li></ul><ul id="747d3101-ef67-4fa7-b86f-a674d347357b" class="bulleted-list"><li style="list-style-type:disc"><em>Type Test</em> <em>Operator</em></li></ul><ul id="c4b38995-e96a-4b75-9e52-6a7691c59d7c" class="bulleted-list"><li style="list-style-type:disc">Operatori di assegnamento</li></ul><ul id="abb835dc-3eab-4dc9-89ff-93ff75fd6650" class="bulleted-list"><li style="list-style-type:disc">Operatori logici</li></ul><p id="46dc27b3-0f5f-42db-b208-95dfe85bbd7d" class="">
+</p><hr id="fb82b002-1ed7-4ed6-af4f-a7df6728e7e7"/><h3 id="2bccf5e0-782a-4c98-8c9f-f708ced4af94" class="">1. Operatori aritmetici</h3><p id="a188e84f-4ddc-45d0-804d-a6004d13d088" class="">
+</p><ul id="07e52f65-91db-4596-b71f-3afb9a61be3c" class="bulleted-list"><li style="list-style-type:disc">Gli operatori aritmetici sono:</li></ul><p id="408bedb3-1c82-4c5a-846f-b21d91e13141" class="">
+</p><ol type="1" id="9f022d67-2c0f-40fd-9cdf-906530455595" class="numbered-list" start="1"><li>+ (Somma)</li></ol><ol type="1" id="e0a092f3-b0ae-4b9c-88c2-5baca8bfa514" class="numbered-list" start="2"><li>-  (Sottrazione)</li></ol><ol type="1" id="53692fce-9195-486b-bc6b-d92b0c04ff44" class="numbered-list" start="3"><li>*  (Moltiplicazione)</li></ol><ol type="1" id="52efbda7-a19a-4d20-9b97-b8bcf1da9ad2" class="numbered-list" start="4"><li>/ (Divisione)</li></ol><ol type="1" id="47f6aa02-73c9-4f6f-a921-9ab941bfc88f" class="numbered-list" start="5"><li>% (Modulo, resto della divisione di due numeri)</li></ol><ol type="1" id="e7cc8b81-52da-4070-b5b2-2873f252e26c" class="numbered-list" start="6"><li>++ (Incremento di 1)</li></ol><ol type="1" id="fe37d3aa-3b3b-42cd-a5d9-aae00bcfc4aa" class="numbered-list" start="7"><li>- - (Decremento di 1)</li></ol><ol type="1" id="2ccb69c4-951e-4d0a-857d-0c9bc7c7738b" class="numbered-list" start="8"><li>~/ (Divisione tra interi)</li></ol><p id="1de37f13-7772-4994-9ddb-c0dbe07c3131" class="">
+</p><hr id="e0f7d068-05dd-44c9-be7f-cef3cab75e6b"/><h3 id="5c902ce2-1825-49c6-aa44-2176ab1974e6" class="">2. Operatori di comparazione</h3><p id="fbcdd459-fda0-4d0e-bcb8-0e4f37fcb034" class="">
+</p><ul id="a17e8430-7ec0-48d0-bd9e-e245ef1a9094" class="bulleted-list"><li style="list-style-type:disc">Gli operatori di comparazione sono:</li></ul><p id="067f6433-299c-4d66-b77f-eafd94c0cb3c" class="">
+</p><ol type="1" id="89ff2a56-be07-4a9a-8cf4-bc2ca9f8f40f" class="numbered-list" start="1"><li>&gt; (Maggiore di)</li></ol><ol type="1" id="6824c0ee-929c-427e-b804-2d12943923f7" class="numbered-list" start="2"><li>&lt; (Più piccolo di)</li></ol><ol type="1" id="484032ac-5698-4934-bf41-af4e44f3c30d" class="numbered-list" start="3"><li>&gt;= (Maggiore o uguale di)</li></ol><ol type="1" id="179b78fc-6f79-4ea4-8069-8aba5b90b8fb" class="numbered-list" start="4"><li>&lt;= (Minore o uguale di)</li></ol><ol type="1" id="fa396e04-e71e-4bdf-82f5-38d8846d4ccd" class="numbered-list" start="5"><li>== (Uguaglianza. Verifica se due valori sono uguali)</li></ol><ol type="1" id="56ed0f60-e687-4625-9f6e-441546878dc2" class="numbered-list" start="6"><li>!= (Disuguaglianza. Verifica se due valori sono diversi)</li></ol><p id="46dc1f05-4a2d-4cf3-85be-8f685dfb8739" class="">
+</p><ul id="aa9374f3-8322-4908-8eaf-eecdedd0f595" class="bulleted-list"><li style="list-style-type:disc">Questi operatori ritornano un booleano come risultato (l’esito del paragone può essere ‘True’ o ‘False’)</li></ul><ul id="b979e183-2f65-4689-a12d-9d38e87bf2d2" class="bulleted-list"><li style="list-style-type:disc">Questi operatori vengono utilizzati solitamente quando si deve porre qualche condizione</li></ul><p id="828d86e9-3b64-4b90-8bee-918f31652171" class="">
+</p><hr id="a52c8727-3fd4-477a-ae9b-ee0f21b7b67f"/><h3 id="2d4fc0ca-afc6-4f62-94fc-a8d076038e62" class="">3. <em>Type Test Operator</em></h3><p id="ee9343d2-edfe-4c3d-b49d-9ee97a8bd72e" class="">
+</p><ul id="636cb997-ad91-4e3e-8ac9-c4da3a0b5137" class="bulleted-list"><li style="list-style-type:disc">Questi operatori vengono utilizzati per verificare se una variabile contiene un dato di un determinato tipo (ad esempio un numero di telefono non può contenere lettere)</li></ul><ul id="89fa6158-65d0-4697-aa70-4ecf815101db" class="bulleted-list"><li style="list-style-type:disc">Questi operatori sono:</li></ul><p id="2aaa8c87-c7d8-4bfc-a462-0fd3669a1b92" class="">
+</p><ol type="1" id="9a9e019c-555c-437d-8946-e70c2c672653" class="numbered-list" start="1"><li>is (Vero, se l’oggetto è di quel tipo specifico)</li></ol><ol type="1" id="95146aa2-5041-4375-8d52-040da10c05f3" class="numbered-list" start="2"><li>is! (Falso, se l’oggetto non è di quel tipo specifico)</li></ol><p id="a567af75-eb05-4a51-8340-0431574f9b13" class="">
+</p><p id="5ca29ba2-4ef5-4238-bc2b-c566b570de52" class="">Esempio 1</p><pre id="86e6a5b2-2b8d-41a9-b344-861f414c7bcd" class="code"><code>void main() {
+
+	int n = 2;
+	print(n is int);
+
+}</code></pre><p id="492bfaca-06a0-4520-ab7b-6baab8c85953" class="">
+</p><p id="102d6fb8-d5da-4958-acc3-bde7be413446" class="">Esempio 2</p><pre id="d3c4a5d9-83d3-436b-b4ec-0817564ff547" class="code"><code>void main() {
+
+	double n = 2.20;
+	var num = n is! int;
+	print(num);
+
+}</code></pre><p id="e66da979-3681-4d95-ae8f-1be98f6f0ac8" class="">
+</p><hr id="c00a69d1-48f5-4c49-8bfd-a808a81bc64e"/><h3 id="9e743b78-50e5-418e-aad7-3c852a9126c4" class="">4. Operatori logici</h3><p id="e5cd53d0-3b96-40f0-8b53-1c1ce9490605" class="">
+</p><ul id="5167ca3f-c53f-4261-ac8b-3584581b4b92" class="bulleted-list"><li style="list-style-type:disc">Gli operatori logici servono per combinare due o più condizioni</li></ul><ul id="e1182fc1-3930-4172-a428-34146fd99edb" class="bulleted-list"><li style="list-style-type:disc">Questi operatori restituiscono come risultato un booleano</li></ul><ul id="42145232-2e2e-49da-b3ba-ae190deda6c9" class="bulleted-list"><li style="list-style-type:disc">Gli operatori logici sono:</li></ul><p id="1b899e14-52a0-4037-9f2f-1b611fd244fb" class="">
+</p><ol type="1" id="8ab24b41-6666-4287-b346-dd74d17f0e6a" class="numbered-list" start="1"><li>&amp;&amp; (And) ⇒ Il suo risultato sarà ‘True’, solo se tutte le condizioni vengono rispettate</li></ol><ol type="1" id="b93863c9-86b7-4a9b-88ce-370e51613b75" class="numbered-list" start="2"><li>|| (Or) ⇒ Il suo risultato sarà ‘True’, se almeno una delle condizioni viene rispettata</li></ol><ol type="1" id="0bdb6d66-0ab9-4040-8eca-2e8a5b8ee1aa" class="numbered-list" start="3"><li>! (Not) ⇒ Il suo risultato sarà l’opposto dell’esito dell’espressione</li></ol><p id="72ff20b2-d5cd-448c-9d6a-77615d4533bf" class="">
+</p><p id="13f899af-1a34-4de2-812f-07e805f81fc8" class="">Esempio (And)</p><pre id="0ccaadd1-13b6-49ba-9341-733759f00bf0" class="code"><code>void main() {
+
+	var a = 10;
+	var b = 12;
+	var res = (a &lt; b) &amp;&amp; (b &gt; 10);
+	print(res);
+
+}</code></pre><p id="743f833b-5e41-47c4-a3af-bc91d8742365" class="">
+</p><p id="12f84ebc-7868-4074-a255-78158aa04299" class="">
+</p></div></article></body></html>

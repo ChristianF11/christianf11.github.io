@@ -1,0 +1,752 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Widget</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="fda92e5f-3937-4ea2-a78e-a6c13ecc825f" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📲</span></div><h1 class="page-title">Widget</h1></header><div class="page-body"><p id="b2215fc3-8bcd-4042-928f-3eac366c8551" class="">
+</p><nav id="75438402-a638-4013-a0c2-4febe6ed92cc" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1c314693-a4dd-4210-9cce-9af9cf0e9824">Introduzione</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6a08389f-f86a-4765-abfe-b4b3968eae48">Sintassi per definire un widget</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#39f19f0c-276e-4b41-aebe-f72175e52865">Tipologie di widget</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#fee035b1-53f6-4d7f-8e4f-4bf4ca3223b5">Widget VISIBILI</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7b24f007-d570-4077-9b4d-8a933fee1094">Widget INVISIBILI</a></div></nav><hr id="ab527b7a-eae5-45f6-8a47-ee90d1a2e4a4"/><h3 id="1c314693-a4dd-4210-9cce-9af9cf0e9824" class="">Introduzione</h3><p id="23416fe6-7a8e-4814-8ff8-51f6eb491f54" class="">
+</p><ul id="be18039c-531f-43e5-9f6d-c9ffa6182c55" class="bulleted-list"><li style="list-style-type:disc">Come già detto nella pagina precedente, un’applicazione è essa stessa un widget, composta da tanti sub-widgets</li></ul><p id="e8d31035-56be-436c-9bbd-ec7a8bfcb1af" class="">
+</p><p id="0f6ce65f-d2c8-47bc-8fab-e1e8f106b2b8" class="">ALBERO DEI WIDGET</p><figure id="ad53916b-ff58-46b4-ad9f-773254e9b452"><div class="source">https://www.figma.com/file/HcNPCnQT0nLDXvPS6J6A52/Albero-dei-Widget-(Flutter)?node-id=0%3A1</div></figure><p id="2ddbffab-daeb-4eb2-82e0-271641139682" class="">
+</p><p id="8e43eeb9-729a-4e92-8350-471d634781db" class="">Un Widget può:</p><p id="f78bd898-873c-476b-bb80-b89e1caf1d86" class="">
+</p><ul id="a83d5c04-78c4-4022-a2a3-324948603918" class="bulleted-list"><li style="list-style-type:disc">Definire il design di qualcosa</li></ul><ul id="29174e7c-5261-4360-b755-5033fd911d77" class="bulleted-list"><li style="list-style-type:disc">Stampare a schermo qualcosa</li></ul><ul id="86f7f884-25a1-432b-ad5c-a94b0bc717bb" class="bulleted-list"><li style="list-style-type:disc">Può gestire interazioni, ecc.</li></ul><p id="52cbec2a-32a9-4202-86e1-237ea6ec2ab0" class="">
+</p><hr id="947e3cfc-1a8f-499b-ad43-20017646e366"/><h3 id="6a08389f-f86a-4765-abfe-b4b3968eae48" class="">Sintassi per definire un widget</h3><p id="0bbe7310-24da-4436-99eb-295525fa8f24" class="">
+</p><ul id="e885868c-2574-4817-adda-cfab14e47171" class="bulleted-list"><li style="list-style-type:disc">Per definire un widgte, bisogna usare la seguente sintassi</li></ul><pre id="54315283-446a-429a-9b8b-50df34d65021" class="code"><code>Class ImageWidget extends StatelessWidget {
+
+	//Istruzioni della classe
+
+}</code></pre><p id="00955636-4d88-4fbf-9f9a-6f1ed1fc08d7" class="">
+</p><hr id="3c7afdab-7fb2-4590-a60c-59050da12396"/><h3 id="39f19f0c-276e-4b41-aebe-f72175e52865" class="">Tipologie di widget</h3><p id="887b5f9c-633b-4ec5-99ae-a9b8d538909b" class="">
+</p><p id="079549a0-fc47-4410-94ed-33734118d959" class="">Esistono 2 tipi di widgets nel Flutter Framework:</p><p id="231b8e17-f7b3-488b-b52c-356890943fec" class="">
+</p><ul id="afc5792e-b59a-4d1d-937a-2379d84f42dd" class="bulleted-list"><li style="list-style-type:disc">Widget visibili</li></ul><ul id="4e11e452-022c-42cd-8df3-c437cd5fce4c" class="bulleted-list"><li style="list-style-type:disc">Widget invisibili</li></ul><p id="4112f5d2-ab94-40b9-973a-27005ebbe679" class="">
+</p><p id="e611dc77-aaf8-46e7-8a5b-7bdb7fd89103" class="">I <span style="border-bottom:0.05em solid">primi gestiscono i dati di input &amp; output</span>, mentre i <span style="border-bottom:0.05em solid">secondi gestiscono il layout e i controlli dell’applicazione</span></p><p id="2738dd6f-0f2d-43c0-bbc7-af43814582b4" class="">
+</p><hr id="e9f90c32-b192-479d-b4fb-18922038995a"/><h3 id="fee035b1-53f6-4d7f-8e4f-4bf4ca3223b5" class="">Widget VISIBILI</h3><p id="4481c84e-d603-45cd-9b64-27297ea4b6e5" class="">
+</p><ul id="314c20ae-6dcf-4fb1-8914-e910235fea98" class="bulleted-list"><li style="list-style-type:disc">Gestiscono i dati di input &amp; output</li></ul><ul id="43e0aab9-6b9d-4400-9b98-9eeb0b042405" class="bulleted-list"><li style="list-style-type:disc">I 4 widget (visibili) più comuni sono:</li></ul><p id="47cdbe2b-58fa-48f0-b870-e5cf67d0d819" class=""><div class="indented"><ol type="1" id="7ab676a6-9ca3-4039-b06f-715ad86cd5a7" class="numbered-list" start="1"><li>Image</li></ol><ol type="1" id="500e02cc-95a3-43b7-a3f3-e3c311461765" class="numbered-list" start="2"><li>Icon</li></ol><ol type="1" id="c9f3d0e2-41a8-4011-b25a-8d8d29d0a554" class="numbered-list" start="3"><li>Text</li></ol><ol type="1" id="156fc5e2-c87e-44b4-9b5a-df93c8168a0f" class="numbered-list" start="4"><li>Button</li></ol><p id="8ebd486e-7e55-4068-a3dc-55a2eab98591" class="">
+</p></div></p><p id="180d30ac-1b38-4a88-9d43-33b0ba762054" class=""><span style="border-bottom:0.05em solid"><strong>TEXT</strong></span></p><ul id="9465a2f1-7fdc-469d-9c0a-a772644df1ff" class="bulleted-list"><li style="list-style-type:disc">Questo widget mostra del testo</li></ul><ul id="85e7f41e-4c38-4f2d-bb9d-17553dae25f1" class="bulleted-list"><li style="list-style-type:disc">Text può essere allineato tramite la proprietà ‘<span style="border-bottom:0.05em solid"><em>textAlign</em></span>’</li></ul><ul id="02730ed6-78a9-4906-aabd-e72fc2437b4c" class="bulleted-list"><li style="list-style-type:disc">Text può essere personalizzato usando la proprietà ‘<span style="border-bottom:0.05em solid">S</span><span style="border-bottom:0.05em solid"><em>tyle</em></span>’</li></ul><p id="b3c27be0-cc84-4274-9148-96d31595f74f" class="">
+</p><pre id="72206d45-afc3-4e7d-9b9f-8813ecd47a57" class="code"><code>new Text(
+	&#x27;Hello World&#x27;;
+	textAlign: textAlign.Center,
+	Style: new textStyle(fontWeight: Fontweight.bold),
+	)</code></pre><p id="a6bd0b55-1051-4aaa-93d9-6ad9580458bb" class="">
+</p><p id="d6df7b96-8077-47c0-b4dc-21dc52dbc21d" class=""><span style="border-bottom:0.05em solid"><strong>BUTTON</strong></span></p><p id="ee13de37-d804-4088-b1a5-e876f0059fef" class="">
+</p><ul id="5e4afc95-b6a1-4cbe-b0f5-2f9014fe8200" class="bulleted-list"><li style="list-style-type:disc">In Flutter esistono due tipi di ‘Button’ (<em>Flat Button</em> &amp; <em>Raised Button</em>)</li></ul><ul id="cc421222-ed81-4605-a0a5-a0a31b5807a4" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong><em>Raised Button</em></strong></span> ⇒ Dà l’impressione che il tasto sia sopra alla superficie</li></ul><ul id="b4514a0b-7de0-4321-9ed0-b8c8e8d5d358" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong><em>Flat Button</em></strong></span> ⇒ Dipende dal colore che viene dato alla superficie, per dare all’utente l’impressione di bottone</li></ul><p id="3bee06f7-c4a0-44c5-8a96-ce2b23f740e9" class="">
+</p><pre id="755a0b2f-4d71-4593-8bc1-fc38acfff9da" class="code"><code>new FlatButton(
+
+	child: Text(&quot;Click Here&quot;),
+	onPressed: () {
+
+		//Istruzioni
+
+	},
+)</code></pre><p id="ae636e7f-4395-4297-9a6a-dbb70e053794" class="">
+</p><p id="fa063933-13b8-414e-a5ce-0ef4cd23454b" class=""><span style="border-bottom:0.05em solid"><strong>IMAGE</strong></span></p><p id="3ed1bed2-0546-4d38-a605-6c23e67b083e" class="">
+</p><ul id="423c4f77-3fe2-48bf-bedb-02ebae936706" class="bulleted-list"><li style="list-style-type:disc">Questo widget permette di visualizzare immagini</li></ul><ul id="054f76e5-9cdd-4366-8045-30efd0f18bbc" class="bulleted-list"><li style="list-style-type:disc">Le immagini possono essere reperite da diverse sorgenti</li></ul><ul id="ed33e2ad-84b2-4a42-87cd-0eb00c35f846" class="bulleted-list"><li style="list-style-type:disc">Per inserire un’immagine nel progetto, prima di tutto bisogna inserire un <span style="border-bottom:0.05em solid"><em>Assets Folder</em></span> (qui verranno tenute le immagini)</li></ul><ul id="b684f0c4-9e45-4694-b9b1-ce037732f075" class="bulleted-list"><li style="list-style-type:disc">Per <strong>creare </strong>un <span style="border-bottom:0.05em solid"><em>Assets Folder</em></span> bisogna andare nel file “<span style="border-bottom:0.05em solid"><mark class="highlight-yellow_background">pubspec.yaml</mark></span>” e inserire il seguente codice</li></ul><p id="f102c5b8-225e-4914-903f-b3bb6353c2a2" class="">
+</p><pre id="c8838912-2c68-42fe-ab6a-7afe4f6e6e50" class="code"><code>assets:
+	-assets/</code></pre><p id="23e72859-1e64-4c87-90ac-b7080fe45f48" class="">
+</p><ul id="031348bd-5d56-4a79-9feb-d95823ec6703" class="bulleted-list"><li style="list-style-type:disc">Dopodiché aggiungere <mark class="highlight-yellow_background">‘</mark><mark class="highlight-yellow_background"><em>Image.asset</em></mark><mark class="highlight-yellow_background">’ (’assets/computer.png’)</mark> nel codice Dart</li></ul><p id="e4e51f42-6b4a-4945-816f-6a6fdb695721" class="">
+</p><p id="175df92a-a143-4a9c-bde6-cfcb3a54f21d" class=""><span style="border-bottom:0.05em solid"><strong>ICON</strong></span></p><p id="faaae232-c8c6-4791-ad4b-e4c4b22aee15" class="">
+</p><ul id="6fd826d0-80b0-48bb-a56d-37b48454cf7e" class="bulleted-list"><li style="list-style-type:disc">Agisce come un container per, appunto, icone</li></ul><p id="f2b4cb77-6b3c-4a5f-8357-64c84e76b28a" class="">
+</p><pre id="3096f083-9d25-4c2c-ae0d-9cd349a64983" class="code"><code>new Icon(
+	Icons.add,
+	size: 34.0,
+)</code></pre><p id="7c9d31d5-9300-44f8-a01b-a8ff579f8afc" class="">
+</p><hr id="7e6323e8-c93e-4f22-8d03-a9910f07d04f"/><h3 id="7b24f007-d570-4077-9b4d-8a933fee1094" class="">Widget INVISIBILI</h3><p id="9933e213-b0fa-4683-8cf3-80490749ec0d" class="">
+</p><ul id="b1c5adcc-e27c-456d-9bf1-648a66dce012" class="bulleted-list"><li style="list-style-type:disc">Gestiscono il Layout &amp; i controlli</li></ul><ul id="55723cea-690a-4f97-b34b-35dec277df41" class="bulleted-list"><li style="list-style-type:disc">I 4 widget (invisibili) più comuni sono</li></ul><p id="6e4616ed-187c-49b3-8bfb-5f6c271a2488" class=""><div class="indented"><ol type="1" id="e8fcce19-bae5-434f-a78e-e9a4b67a75b1" class="numbered-list" start="1"><li>Column</li></ol><ol type="1" id="be351946-fe2a-4d98-baf5-653ccac9d15d" class="numbered-list" start="2"><li>Row</li></ol><ol type="1" id="178d56fb-23b4-4875-8e39-5679511c07c1" class="numbered-list" start="3"><li>Centre</li></ol><ol type="1" id="fba4e85c-b8ee-42e4-90fd-67d5d0f41136" class="numbered-list" start="4"><li>Padding</li></ol><p id="253a4fdd-f4b8-459f-8f06-767a60e52c7b" class="">
+</p></div></p><p id="5aecc9b4-6db2-43f0-b988-9422cbf5711b" class=""><span style="border-bottom:0.05em solid"><strong>COLUMN</strong></span></p><p id="503a14a7-8cc6-4c34-a495-4b0838b97118" class="">
+</p><ul id="593c3f47-8318-4b4c-9e26-6b92121d6647" class="bulleted-list"><li style="list-style-type:disc">Inserisce i widget in verticale</li></ul><ul id="9d6a82f4-2031-4392-8ebf-2b4cf09f8306" class="bulleted-list"><li style="list-style-type:disc">Gestisce lo spazio tra i widget utilizzando le proprietà ‘<em>mainAxisAlignment</em>’ (asse verticale) e ‘<em>crossAxisAlignment</em>’ (asse orizzontale)</li></ul><p id="68afbe7a-c0f5-4778-868a-3c589fc19a4f" class="">
+</p><pre id="176b4787-becb-4e30-9e04-8fb4faeab3e8" class="code"><code>new Column(
+
+	mainAxisAlignment: MainAxisAlignment.center,
+
+	children&lt;Widget&gt; [
+
+		new Text(
+			&quot;Elemento 1&quot;,
+		),
+
+		new Text(
+			&quot;Elemento 2&quot;,
+		),
+	],
+),</code></pre><p id="7ddef52e-6622-4c6e-8e5a-7f568c9e232d" class="">
+</p><p id="f9243488-066b-4a9b-87b8-c79dccffd93d" class=""><span style="border-bottom:0.05em solid"><strong>ROW</strong></span></p><p id="120c9650-89de-4648-a421-dee407721a2e" class="">
+</p><ul id="2ca15085-5d42-45dd-8c1a-43d1a874d538" class="bulleted-list"><li style="list-style-type:disc">Inserisce i widget in orizzontale</li></ul><ul id="6ad64514-5f00-4ba8-af7f-6c0fa3e1647c" class="bulleted-list"><li style="list-style-type:disc">Gestisce lo spazio tra i widget utilizzando le proprietà ‘<em>mainAxisAlignment</em>’ (asse verticale) e ‘<em>crossAxisAlignment</em>’ (asse orizzontale)</li></ul><p id="d7f14213-bc58-4edc-881c-d1e8d9a9957c" class="">
+</p><pre id="debf4fcc-f8f2-4305-9a96-70b870276a19" class="code"><code>new Row(
+
+	mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+	children&lt;Widget&gt; [
+
+		new Text(
+			&quot;Elemento 1&quot;,
+		),
+
+		new Text(
+			&quot;Elemento 2&quot;,
+		),
+	],
+),</code></pre><p id="dadf997b-82db-43f9-9dce-5b1f22f33c64" class="">
+</p><p id="c7b9a8e8-65ae-410e-a837-f2a9b15459b5" class=""><span style="border-bottom:0.05em solid"><strong>PADDING</strong></span></p><p id="8e9d33e1-4bea-4eb6-908c-091cd5579b61" class="">
+</p><ul id="48817e2d-c76f-4fd5-b136-c76448177942" class="bulleted-list"><li style="list-style-type:disc">Crea una sorta di spazio (settato manualmente) tra i widget</li></ul><ul id="d675dd63-1168-4307-9326-6f0f5dea6511" class="bulleted-list"><li style="list-style-type:disc">Si può settare un Padding in tutte le direzioni (Top, Left, Rigth, Bottom)</li></ul><p id="33f410c6-425a-435e-b1b6-1072933e6435" class="">
+</p></div></article></body></html>

@@ -1,0 +1,779 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Calcolatore BMI</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a3950638-e67e-4744-978c-e56918c8435f" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🚶🏽</span></div><h1 class="page-title">Calcolatore BMI</h1></header><div class="page-body"><p id="bd10333f-da2b-47aa-afc9-ab869e93fcd6" class="">
+</p><nav id="c9f8dc2f-bdda-42a2-b0fb-21f35cb74aa5" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#21d27c7f-be08-43cb-bb2c-0ae16b9bba3b">Introduzione</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#55d03c12-fe61-4a61-8f0c-2f7c580381b2">A cosa serve un calcolatore di BMI?</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#637675ed-c41b-4216-ae4b-4c1020bbbeb1">Perché programmare un calcolatore di BMI?</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f303d968-e29f-4867-b337-3677424cc61a">Come si è evoluto il progetto</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#878ab0d9-0e35-489c-b5f1-cac875e0c009">All’interno del progetto</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e9785f0-faaf-497b-90ec-262541fcdb38">Quali funzioni sono state definite?</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#c6e19cbc-2bf4-422b-897a-360a6ab8b18b"><em>_calcoloBMI</em></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#b3887742-cb2f-4fa9-b30f-c2bba846749e"><em>_esitoFinale</em></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#fb346253-aeb3-46da-8b70-c92f022301e3"><em>_clearInput</em></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#16e5cd93-7e90-41b3-a0b7-81814047812c"><em>_switchSlider</em></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1cec45ce-bf9c-4a56-b770-ee87595ff63c">Widget utilizzati</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#8ed3c1d9-f1de-4229-aafa-47fc21bf658a"><em>Tooltip</em></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#52729370-755d-4c30-b229-3631de9262d3"><em>Visibility</em></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#107e7b03-72c0-466a-8a4c-8d3b2f5b40ff"><em>ButtonTheme</em></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#e4664773-da20-44d2-806b-19491297a939"><em>AlertDialog</em></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#320300f7-058d-4a5a-8009-a68d0bb57de8">Palette dei colori utilizzati</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#848cf757-1a11-4b6b-a257-d77bb3941b07"><em>Dependencies</em> utilizzate</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3ec22068-0696-496d-936b-892b3a5ec8a9">Note &amp; Appunti</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#287dd9bf-bf0d-4666-9be3-13e4e7942a0e">Ambienti di sviluppo utilizzati</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7202f4a5-f6d1-4855-af9c-6e95b1ae67cd">Codice &amp; APK</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f270fec3-abe8-4d15-8765-fe172ac9efd0">Link Repository (GitHub)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#56cf577e-b2d4-4c47-b7df-c7c873e06d92">Download APK</a></div></nav><hr id="a93ad92b-3279-43af-bbac-a21146731b83"/><h1 id="21d27c7f-be08-43cb-bb2c-0ae16b9bba3b" class="">Introduzione</h1><p id="19d797bf-50ca-4cc8-a630-81fd233a54e1" class="">
+</p><h2 id="55d03c12-fe61-4a61-8f0c-2f7c580381b2" class="">A cosa serve un calcolatore di BMI?</h2><p id="46fa8095-11c3-4d34-8add-52af845c6115" class="">Un “calcolatore BMI” serve per calcolare l’<em>Indice di Massa Corporea</em>, ovvero un dato biometrico che si ottiene dal rapporto tra il peso e il quadrato dell’altezza:
+</p><p id="1bce4baf-f320-4167-8812-b6bdc9be89b4" class=""><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>M</mi><mi>I</mi><mo>=</mo><mi>p</mi><mi>e</mi><mi>s</mi><mi>o</mi><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mi>s</mi><mi>t</mi><mi>a</mi><mi>t</mi><mi>u</mi><mi>r</mi><msup><mi>a</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">BMI = peso / (statura^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">BM</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">eso</span><span class="mord">/</span><span class="mopen">(</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span></p><p id="e34da054-7a39-4c78-a844-7dbcc64894ec" class="">
+</p><p id="89e7dad1-31b0-4b2c-81c8-b30d185460ad" class="">(Dove “peso” è in <span style="border-bottom:0.05em solid"><strong>Kg</strong></span> e “statura” in <strong><span style="border-bottom:0.05em solid">m</span></strong>)</p><p id="d593a796-34f7-4ac5-acb2-800809e72ba7" class="">
+</p><p id="70d36449-041c-4009-ba44-efc36f4752ff" class="">Il suo valore determina lo “stato” di una persona:</p><p id="78ee21e0-e246-414c-abc5-80fcac481173" class="">
+</p><p id="0c6b9c29-465b-4e85-a3e5-6ca9489fbf2c" class=""><span style="border-bottom:0.05em solid">CASI POSSIBILI</span></p><p id="3f3f1776-ac26-43e3-870e-f2e81817ea8c" class="">
+</p><table id="9d89034f-08df-47ae-a484-60796a5f2b57" class="simple-table"><tbody><tr id="7dcbd5e3-7e1e-4745-bc2a-50204a6038ac"><td id="?N};" class=""><span style="border-bottom:0.05em solid"><strong>CATEGORIA</strong></span></td><td id="HV_u" class=""><span style="border-bottom:0.05em solid"><strong>BMI RANGE</strong></span></td></tr><tr id="b96cc5ff-b666-44d2-9e8b-7fc76ce26f18"><td id="?N};" class="">Sottopeso severo</td><td id="HV_u" class="">&lt; 16,5</td></tr><tr id="58a958a4-4d6d-4c46-ae54-58da56d96d02"><td id="?N};" class="">Sottopeso</td><td id="HV_u" class="">da 16,5 a 18,4</td></tr><tr id="eff216c8-3194-4337-bb94-4748f1509301"><td id="?N};" class="">Normale</td><td id="HV_u" class="">da 18,5 a 24,9</td></tr><tr id="f691c1fa-950d-4a48-93dd-c7118bba4d8f"><td id="?N};" class="">Sovrappeso </td><td id="HV_u" class="">da 25 a 30</td></tr><tr id="4750f0e7-02c1-4d56-9706-7ca0eac97370"><td id="?N};" class="">Obesità di I grado</td><td id="HV_u" class="">da 30,1 a 34,9</td></tr><tr id="1a05d17f-6cf6-42f3-8386-8f38628fb925"><td id="?N};" class="">Obesità di II grado</td><td id="HV_u" class="">da 35 a 40</td></tr><tr id="3f2fb27d-7d88-4567-b005-124a2f381522"><td id="?N};" class="">Obesità di III grado</td><td id="HV_u" class="">&gt; 40</td></tr></tbody></table><p id="71330921-f5d1-469d-aa4f-0a6dbd47a0f3" class="">
+</p><h2 id="637675ed-c41b-4216-ae4b-4c1020bbbeb1" class="">Perché programmare un calcolatore di BMI?</h2><p id="a665c87d-8bd4-491c-8827-b56680b3a0e0" class="">Questo è stato il mio primo progetto in Flutter e siccome lo reputo un esercizio molto “scolastico” (in quanto l’ho replicato anche in C e in Java all’<em>Accademia Digitale Liguria</em>) ho pensato che fosse un buon punto di partenza vista anche la logica e le funzioni non troppo complesse; in queste condizioni ho potuto concentrarmi sulla realizzazione di un <em>Layout</em> che combinasse più widget (di cui avevo solo una conoscenza teorica e poco pratica).</p><p id="696af582-2622-4a69-b290-4469d5471f3c" class="">
+</p><h2 id="f303d968-e29f-4867-b337-3677424cc61a" class="">Come si è evoluto il progetto</h2><p id="2f5bb137-73e7-4ad1-b3b1-f3de8d926718" class="">Inizialmente il progetto prevedeva solo dei ‘<em>TextField</em>’ (widget che si occupa di prendere i valori di input inseriti dall’utente) e un bottone che calcolasse il BMI, restituendo un messaggio di riepilogo con un alert. Le implementazioni che sono avvenute a progetto iniziato sono state:</p><p id="97344ebf-2a20-43ba-80c3-f937248f2966" class="">
+</p><ul id="67025ffb-7fc1-46e0-8bf6-951908423122" class="bulleted-list"><li style="list-style-type:disc">L’inserimento di un bottone nell’<em>AppBar</em>*<em> </em>per ripulire tutti i campi di input </li></ul><ul id="1f90310f-0adf-459a-9d7f-529b0f719e20" class="bulleted-list"><li style="list-style-type:disc">L’inserimento di un bottone (sempre nell’<em>AppBar</em>) per modificare la modalità di input, ovvero per passare da ‘<em>TextField</em>’ a ‘<em>Slider</em>’**</li></ul><p id="19d42179-f509-4562-88df-379d934317c4" class="">
+</p><hr id="29238176-70f5-44fe-bd8d-e70a7e06add6"/><h1 id="878ab0d9-0e35-489c-b5f1-cac875e0c009" class="">All’interno del progetto</h1><p id="09a34054-acb9-4d4a-9a1c-d9b035b0e89d" class="">
+</p><h2 id="1e9785f0-faaf-497b-90ec-262541fcdb38" class="">Quali funzioni sono state definite?</h2><p id="e9c01a86-1b77-412b-ae71-39764ac6db3f" class="">
+</p><h3 id="c6e19cbc-2bf4-422b-897a-360a6ab8b18b" class=""><em>_calcoloBMI</em></h3><p id="745366fe-1b90-47ac-8025-5016dee6ed9f" class="">
+</p><ul id="1b0e264e-6ccb-4450-a8ef-9b409528da82" class="bulleted-list"><li style="list-style-type:disc">Return Type: <em>double</em></li></ul><ul id="045df7fc-2ce0-409c-b57d-fc24de5a518e" class="bulleted-list"><li style="list-style-type:disc">Parametri: <em>double</em> statura, <em>double </em>peso</li></ul><ul id="7c0db4f0-6f16-4f8f-9ada-5d741f66535e" class="bulleted-list"><li style="list-style-type:disc">Descrizione: Il compito di questa funzione è semplicemente quello di calcolare il BMI con i dati inseriti dall’utente (i parametri). Il risultato viene troncato a due cifre dopo la virgola grazie al metodo qua linkato: </li></ul><figure id="afb1a4eb-8e56-4068-a778-e8c5f7819abd" class="link-to-page"><a href="https://www.notion.so/Troncare-i-numeri-decimali-double-afb1a4eb8e564068a778e8c5f7819abd"><span class="icon">🔟</span>Troncare i numeri decimali (double)</a></figure><p id="9d9d8676-9141-4209-bd30-385cee075d9c" class="">
+</p><ul id="eb87ffbf-e9fc-4daf-9234-5a0e3dc93367" class="toggle"><li><details open=""><summary>Codice</summary><pre id="b74eb7e7-0f3c-4f0c-9882-27475916372e" class="code"><code>//Funzione che esegue il calcolo
+  double _calcoloBMI(double statura, double peso) {
+
+    double result = 0;
+    statura /= 100; //Conversione da cm a m
+    result = peso / (statura*statura);
+
+    return double.parse((result).toStringAsFixed(2)); //Risultato restituito con solo 2 decimali dopo la virgola
+  }</code></pre></details></li></ul><p id="d9f0b586-9728-4c59-b47c-afdc28ad5b24" class="">
+</p><h3 id="b3887742-cb2f-4fa9-b30f-c2bba846749e" class=""><em>_esitoFinale</em></h3><p id="4b100c6e-d60b-4f11-b0ed-2e73bd7cf25a" class="">
+</p><ul id="71ec11d6-a711-423d-8f92-b00d5c6d74b6" class="bulleted-list"><li style="list-style-type:disc">Return Type: <em>String</em></li></ul><ul id="5b21877f-67c3-4d57-90d2-18e6193f6a5e" class="bulleted-list"><li style="list-style-type:disc">Parametri:  <em>double</em> _valBMI</li></ul><ul id="35f03e25-e6c0-404b-9cd2-f4c10fe66c84" class="bulleted-list"><li style="list-style-type:disc">Descrizione: Questa funzione prende il valore del BMI (calcolato dalla funzione sopra citata e salvato in una apposita variabile) e restituisce la “zona” a cui appartiene l’utente. Quindi se per esempio il BMI arrivato come parametro avrà un valore pari a 17, questa funzione restituirà ‘<em>Sottopeso</em>’
+</li></ul><ul id="0f30ba76-9ca6-4dd0-90f4-1dcf02aa42bf" class="toggle"><li><details open=""><summary>Codice</summary><pre id="cc4c45f3-92a7-4363-8569-b8da01edf5e3" class="code"><code>//Funzione che restituisce la zona di appartenenza (a seconda del valore del BMI)
+  String _esitoFinale(_valBMI) {
+
+    if(_valBMI &lt; 16.5) {
+      return &#x27;Sottopeso severo&#x27;;
+    }
+
+    if(_valBMI &gt;=16.5 &amp;&amp; _valBMI &lt;= 18.4) {
+      return &#x27;Sottopeso&#x27;;
+    }
+
+    if(_valBMI &gt;= 18.5 &amp;&amp; _valBMI &lt;= 24.9) {
+      return &#x27;Normale&#x27;;
+    }
+
+    if(_valBMI &gt;= 25 &amp;&amp; _valBMI &lt;= 30) {
+      return &#x27;Sovrappeso&#x27;;
+    }
+
+    if(_valBMI &gt;= 30.1 &amp;&amp; _valBMI &lt;= 34.9) {
+      return &#x27;in Obesità di I grado&#x27;;
+    }
+
+    if(_valBMI &gt;= 35 &amp;&amp; _valBMI &lt;= 40) {
+      return &#x27;in Obesità di II grado&#x27;;
+    }
+      return &#x27;in Obesità di III grado&#x27;;
+
+  }</code></pre></details></li></ul><p id="48624ef5-8bc3-4e70-864a-532fbdd6c0c2" class="">
+</p><h3 id="fb346253-aeb3-46da-8b70-c92f022301e3" class=""><em>_clearInput</em></h3><p id="6029575d-c1c8-4947-8d0c-a53cfb0ffeea" class="">
+</p><ul id="e36c514d-850e-4ad2-a2ef-f07ea9817014" class="bulleted-list"><li style="list-style-type:disc">Return Type: void</li></ul><ul id="c70b35d1-f5ac-48ad-9247-1de52df354bf" class="bulleted-list"><li style="list-style-type:disc">Parametri: --</li></ul><ul id="d5a72106-409a-47a7-8816-cb7c84eccd10" class="bulleted-list"><li style="list-style-type:disc">Descrizione: Questa funzione ha il compito di ripulire tutti i campi di input. Viene richiamata quando viene cliccato il bottone che si trova nell’<em>AppBar</em></li></ul><p id="4b79ab52-9e4d-4676-a824-91e8b7955781" class="">
+</p><ul id="263a8d5a-151c-40a4-ac52-98dc1e98abf6" class="toggle"><li><details open=""><summary>Codice</summary><pre id="dc33c68f-d81f-4f47-b06f-e928b80f8953" class="code"><code>//Esito che ripulisce l&#x27;input
+  void _clearInput() {
+
+    if(!_sliderVisibile) {
+      //Vengono ripuliti i &#x27;TextField&#x27;
+      controllerPeso.clear();
+      controllerAltezza.clear();
+
+      //Il valore di &#x27;peso&#x27; e &#x27;altezza&#x27; vengono resettati
+      setState(() =&gt; _valPeso = 0);
+      setState(() =&gt; _valAltezza = 0);
+    }
+
+  }</code></pre></details></li></ul><p id="0d0410d5-b57e-4082-ae21-e311de49516b" class="">
+</p><h3 id="16e5cd93-7e90-41b3-a0b7-81814047812c" class=""><em>_switchSlider</em></h3><p id="d81c5eab-8563-414a-a60d-5adcc34377ca" class="">
+</p><ul id="36178240-6a85-49b9-aa9c-c0b7edee28c2" class="bulleted-list"><li style="list-style-type:disc">Return Type: void</li></ul><ul id="4ab6a6d4-cf97-48cc-ad42-0588aeba1f0f" class="bulleted-list"><li style="list-style-type:disc">Parametri: --</li></ul><ul id="10ddfb5d-d65f-4c83-9fdb-2c5f8795614c" class="bulleted-list"><li style="list-style-type:disc">Descrizione: I ‘<em>TextField</em>’ vengono sostituiti da degli ‘<em>Slider</em>’. Ciò avviene (e quindi la funzione viene invocata) quando viene cliccato l’apposito bottone situato nell’<em>AppBar</em>, vicino a quello che serve per pulire gli input</li></ul><p id="e39cfee3-4052-4c3c-9b17-b18c2aa163e4" class="">
+</p><ul id="c8b818f0-ed4a-4143-a569-2752dc7e7547" class="toggle"><li><details open=""><summary>Codice</summary><pre id="4a35a0b4-7fb1-4956-bc2f-4a221d1f0c22" class="code"><code>void _switchSlider() {
+
+    if(_sliderVisibile) {
+      setState(() =&gt; _sliderVisibile = false);
+      setState(() =&gt; _valPeso = 0);
+      setState(() =&gt; _valAltezza = 0);
+
+    }
+
+    else {
+
+      setState(() =&gt; _sliderVisibile = true);
+      setState(() =&gt; _valPeso = _valSliderPeso);
+      setState(() =&gt; _valAltezza = _valSliderAltezza);
+
+    }
+
+  }</code></pre></details></li></ul><p id="6fa93e90-011c-48bb-987f-cd5ba63e697b" class="">
+</p><h2 id="1cec45ce-bf9c-4a56-b770-ee87595ff63c" class="">Widget utilizzati</h2><p id="10a89490-61bc-4bca-bc28-fc66255281a1" class="">
+</p><p id="cae90fef-f9a6-4949-96d6-6b14a438cf5b" class="">In quanto primo progetto tutti i widget sono risultati nuovi, ma in particolare vorrei sottolineare l’utilizzo dei seguenti:</p><p id="4b801394-8963-4436-9635-be9993e64329" class="">
+</p><h3 id="8ed3c1d9-f1de-4229-aafa-47fc21bf658a" class=""><em>Tooltip</em></h3><p id="633d184e-bb05-4e8f-b04b-7871c490e658" class="">Corrisponde a una piccola etichetta che compare su computer al passaggio del cursore su un’icona e su telefono con una pressione prolungata sempre sull’icona. L’obiettivo e l’utilità di questo widget è quella di spiegare brevemente con poche parole a cosa serve quel determinato bottone</p><p id="a10d3dd1-01c3-4595-9a12-100e5cab4737" class="">
+</p><h3 id="52729370-755d-4c30-b229-3631de9262d3" class=""><em>Visibility</em></h3><p id="58f971b2-4e23-4c4f-9a8d-ba42292ebfe5" class="">Tramite l’utilizzo di una variabile booleana permette di vedere/non vedere un determinato widget all’interno dell’interfaccia. In questo caso, la sua utilità si è potuta vedere nello switch da <em>TextField </em>a <em>Slider</em> e viceversa.</p><p id="610e2514-c75b-4bb8-ad4f-ec7246e7b88e" class="">
+</p><h3 id="107e7b03-72c0-466a-8a4c-8d3b2f5b40ff" class=""><em>ButtonTheme</em></h3><p id="736b42cd-f90f-4cc0-bd80-99daa4818951" class="">All’interno di un <em>SizedBox</em> e genitore di un <em>ElevatedButton</em>, questo widget permette di personalizzare un bottone (scegliere larghezza, altezza, ecc.)</p><p id="33219aae-d3b0-44a8-83c5-5a04116bd8c8" class="">
+</p><h3 id="e4664773-da20-44d2-806b-19491297a939" class=""><em>AlertDialog</em></h3><p id="94a89c43-401f-4928-9fc0-210b484f391f" class="">Restituisce come output un alert, ovvero un riquadro contenente del testo. Questo widget è diviso in tre sezioni:</p><ul id="0390d903-5c9d-4fc1-8f8a-051e46a573ff" class="bulleted-list"><li style="list-style-type:disc">Titolo</li></ul><ul id="fa09a5db-74a2-4cea-9a06-2031522f60dd" class="bulleted-list"><li style="list-style-type:disc">Contenuto</li></ul><ul id="a487cda1-7cdf-4f02-8ec5-f82ee33e082e" class="bulleted-list"><li style="list-style-type:disc">Bottone </li></ul><p id="a4ac708e-bd55-4113-a299-db50f0ce3c7c" class="">
+</p><h2 id="320300f7-058d-4a5a-8009-a68d0bb57de8" class="">Palette dei colori utilizzati</h2><p id="e3a0f137-9071-49d4-87e6-14fe32dcf9d3" class="">
+</p><ul id="ba024a39-029c-4983-ae1a-57ad28fa0b74" class="bulleted-list"><li style="list-style-type:disc">Colore primario (sfondo) ⇒ F3FFF7</li></ul><ul id="67e07a69-f3c2-4c98-8a6f-1126e71cf1d8" class="bulleted-list"><li style="list-style-type:disc">Colore secondario (App Bar) ⇒ 42E8C0</li></ul><ul id="7a325012-7bf9-4cad-8dc9-1e19ddc917c5" class="bulleted-list"><li style="list-style-type:disc">Colore Testo ⇒ 00000 (nero)</li></ul><p id="051fc913-cb03-44b4-9ae4-290970e0853b" class="">
+</p><h2 id="848cf757-1a11-4b6b-a257-d77bb3941b07" class=""><em>Dependencies</em> utilizzate</h2><p id="44a5a7f9-9340-4818-93c0-6d59e0ca8aa2" class="">Le <em>dependencies</em> sono pacchetti necessari per svolgere alcune azioni come ad esempio cambiare il colore di sfondo o l’icona all’avvio dell’applicazione.</p><p id="3b3e9a52-d21f-457b-a82c-51f8b0404210" class="">
+</p><p id="444f1b02-9205-4ef1-97e1-449d72397e68" class="">In questo progetto ho inserito la <em>dependency</em> necessaria per trattare (come ho detto nell’esempio) le proprietà all’avvio dell’app:</p><p id="3f4bca66-5d12-46c6-80e7-50c77cd160d3" class="">
+</p><ul id="d32e7714-7ba3-427e-9a14-62bbce5a784c" class="bulleted-list"><li style="list-style-type:disc"><strong>flutter_native_splash: ^2.2.8</strong></li></ul><p id="6ca75793-87e0-41d5-95e3-eb512d4df53b" class="">
+</p><h2 id="3ec22068-0696-496d-936b-892b3a5ec8a9" class="">Note &amp; Appunti</h2><p id="9decf561-182a-4975-b6d3-2d4daa11909a" class="">In questa sezione vorrei trattare alcune delle tante nozioni che ho appreso nella realizzazione di questa semplice applicazione</p><p id="952ca3f0-1774-4ede-a61b-714bcde8eea9" class="">
+</p><ul id="9d0e029c-ac05-425a-846f-3e0800d24160" class="bulleted-list"><li style="list-style-type:disc">Ogni <em>TextField </em>necessita di un suo <em>controller</em> e di una sua variabile che verifichi se l’input è corretto (se così non fosse, entrambi gli input dovrebbero essere corretti per evitare un messaggio di errore). Oltre a ciò, con l’utilizzo di un singolo <em>controller</em>, le azione eseguite su una casella di input si verificherebbero anche su tutte le altre (inserimento o rimozione del testo, messaggi di errore, ecc.)</li></ul><p id="ff98f334-f96d-41b7-b639-5ff84df449f7" class="">
+</p><figure id="ab9e6941-34d3-4139-a72d-6b43bc3db212" class="link-to-page"><a href="https://www.notion.so/Settare-l-icona-di-un-bottone-ab9e694134d34139a72d6b43bc3db212"><span class="icon">🔘</span>Settare l’icona di un bottone</a></figure><figure id="fec0359d-8e3f-4a4e-8c7f-8a5be62081d5" class="link-to-page"><a href="https://www.notion.so/Cambiare-il-colore-dell-AppBar-fec0359d8e3f4a4e8c7f8a5be62081d5"><span class="icon">🎨</span>Cambiare il colore dell’AppBar</a></figure><figure id="9e1a895f-6440-47e7-b720-dbab1764e5cd" class="link-to-page"><a href="https://www.notion.so/Modificare-lo-stile-di-un-testo-9e1a895f644047e7b720dbab1764e5cd"><span class="icon">⌨️</span>Modificare lo stile di un testo</a></figure><figure id="95cad415-fa7d-475d-b59c-b91c91810d43" class="link-to-page"><a href="https://www.notion.so/Creare-un-TextField-con-controllo-95cad415fa7d475db59cb91c91810d43"><span class="icon">📝</span>Creare un TextField (con controllo)</a></figure><figure id="8aabe9e8-c88a-42a4-a2bb-84662ec6d017" class="link-to-page"><a href="https://www.notion.so/Creare-un-ElevatedButton-8aabe9e8c88a42a4a2bb84662ec6d017"><span class="icon">🔵</span>Creare un ‘ElevatedButton’</a></figure><figure id="3d8a3fce-976f-4e4b-ae91-ca07ef864dd5" class="link-to-page"><a href="https://www.notion.so/Cambiare-il-colore-di-un-alert-3d8a3fce976f4e4bae91ca07ef864dd5"><span class="icon">🗨️</span>Cambiare il colore di un ‘alert’</a></figure><figure id="aa16a0dd-a9d6-4705-892c-a38205203d08" class="link-to-page"><a href="https://www.notion.so/Mostrare-uno-SnackBar-aa16a0dda9d64705892ca38205203d08"><span class="icon">🍫</span>Mostrare uno SnackBar</a></figure><figure id="82009d75-722f-4086-bf72-e80829eeb52b" class="link-to-page"><a href="https://www.notion.so/Ripulire-dei-TextField-82009d75722f4086bf72e80829eeb52b"><span class="icon">🧹</span>Ripulire dei ‘TextField’</a></figure><figure id="7f7d4999-9c6c-4367-a519-7aac10f96f08" class="link-to-page"><a href="https://www.notion.so/Conditional-Visibility-7f7d49999c6c4367a5197aac10f96f08"><span class="icon">👀</span>Conditional Visibility</a></figure><figure id="3df055c6-63d5-40bb-836a-33e46aea11e4" class="link-to-page"><a href="https://www.notion.so/Padding-3df055c663d540bb836a33e46aea11e4"><span class="icon">🔲</span>Padding</a></figure><figure id="3565b2f5-08f0-4d3f-b759-bfe2bfeca6cb" class="link-to-page"><a href="https://www.notion.so/Immagine-di-avvio-Logo-dell-app-3565b2f508f04d3fb759bfe2bfeca6cb"><span class="icon">🌠</span>Immagine di avvio &amp; Logo dell’app</a></figure><p id="6b99caf1-11fd-4378-9134-4eac359ac0be" class="">
+</p><h2 id="287dd9bf-bf0d-4666-9be3-13e4e7942a0e" class="">Ambienti di sviluppo utilizzati</h2><ul id="50b86d9c-1c96-426c-820a-85b2bd32d1c0" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid">Android Studio</span> ⇒ La totalità del lavoro (scrittura codice e build dell’APK) è stata svolta su questo ambiente di sviluppo</li></ul><hr id="b5fd697f-5993-4997-8b0d-44b7cb375557"/><h1 id="7202f4a5-f6d1-4855-af9c-6e95b1ae67cd" class="">Codice &amp; APK</h1><p id="b5b0f716-26ca-4066-94e7-65e17a455e92" class="">
+</p><h2 id="f270fec3-abe8-4d15-8765-fe172ac9efd0" class="">Link Repository (GitHub)</h2><p id="2e9952e2-d1a9-4b23-bc5b-0dc72d2ea4d0" class="">
+</p><figure id="c4fbf6a2-27fb-4cdd-9701-331a529cac2f"><div class="source">https://github.com/ChristianF11/BMI-calculator</div></figure><p id="4306f36b-a8c0-4279-a391-77f3f946e77a" class="">
+</p><h2 id="56cf577e-b2d4-4c47-b7df-c7c873e06d92" class="">Download APK</h2><p id="294ba5b0-50ce-4764-8c56-86c10d560fb4" class="">
+</p><p id="9b54848d-585b-4997-a78f-8e21a7517c5e" class="">
+</p><hr id="bde88976-12ab-44bd-b767-20f9e1242b28"/><p id="f16b897f-c6da-4dbb-832a-6a042f812b1e" class="">*La sezione delimitata (solitamente di un colore differente dallo sfondo dell’applicazione) che si trova nella parte alta dello schermo. Qui sono presenti elementi come il tasto per tornare indietro, un titolo e alcuni bottoni dedicati alle azioni (come ad esempio “pulizia input”, “cambio tema diurno/notturno”, ecc.)</p><p id="4aaf4307-6f6c-4947-a3c6-6fcb7df03e43" class="">**Una barra con un riempimento che se viene trascinato verso destra incrementa il valore (ovviamente, trascinando verso sinistra si verifica l’effetto opposto)</p></div></article></body></html>
